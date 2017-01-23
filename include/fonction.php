@@ -2,6 +2,8 @@
 
 require_once ".init.php";
 
+// print_r(returnDataGeo());
+
 function request($key){
 	 /*&& !empty(trim($_REQUEST[$key]))*/
 	if(isset($_REQUEST[$key])){
@@ -347,3 +349,72 @@ function test(){
 }
 
 
+function returnDataGeo(){
+
+	$sql= new SQLpdo();
+	$tabData=$sql->fetchAll("SELECT * FROM `ltp_lieu` WHERE `geo_coordinates`='' " );
+	
+
+	return $tabData;
+
+}
+
+function addCoordonne($id,$coordonne){
+
+
+	$sql= new SQLpdo();
+	$tabData=$sql->insert("UPDATE `ltp_lieu` SET `geo_coordinates` = :coordonne WHERE `ltp_lieu`.`id` = :id;", array(":id"=>$id,":coordonne"=>$coordonne) );
+	
+	return $tabData;
+
+}
+
+
+
+/**
+ * Fonction de récupération de géopoint google maps
+ */
+function get_coords($address){
+  // je construit une URL avec l'adresse
+	$coords=array();
+	$base_url="http://maps.googleapis.com/maps/api/geocode/xml?";
+	// ajouter &region=FR si ambiguité (lieu de la requete pris par défaut)
+	$request_url = $base_url . "address=" . urlencode($address).'&sensor=false';
+	$xml = simplexml_load_file($request_url) or die("url not loading");
+	//print_r($xml);
+	$coords['lat']=$coords['lon']='';
+	$coords['status'] = $xml->status ;
+	if($coords['status']=='OK')
+	{
+	 $coords['lat'] = $xml->result->geometry->location->lat ;
+	 $coords['lon'] = $xml->result->geometry->location->lng ;
+	}
+	return $coords;
+}
+
+function majCoordonne(){
+
+	$donne= returnDataGeo();
+
+
+
+    for ($i=0; $i <count($donne) ; $i++) { 
+        # code...
+        if ($donne[$i]['id']!=1602 and $donne[$i]['id']!=7393 and $donne[$i]['id']!=7481 and $donne[$i]['id']!=7836 and $donne[$i]['id']!=7932){
+        	print_r($donne[$i]['id']);
+        $champ=$donne[$i]['adresse_complete'];
+        $info=get_coords($champ);
+        // print_r($info['lon']);
+        $adresse=$info['lat'].", ".$info['lon'];
+        print_r($adresse);
+        print_r($donne[$i]['id']);
+        
+         addCoordonne($donne[$i]['id'],$adresse);
+        }
+    	
+
+
+        
+
+    }
+}
