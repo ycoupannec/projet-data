@@ -1,0 +1,25 @@
+body {
+    padding: 0;
+    margin: 0;
+}
+html, body, #mapid {
+    height: 80vh;
+    width: 100vw;
+}
+
+
+.modal-content{
+    color: #FFFFFF;
+    background-color: #505F7E;
+    border-radius: 2px;
+}
+
+.modal-header, .modal-footer{
+    border: none;
+}
+
+.modal-footer button{
+    background-color: #282F3E;
+    border: none;
+    border-radius: 2px;
+}
