@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+</head>
+
+<body>
+<form name='rechercher' id="form1" method="get">
+  <input type="text" value="recherche" id="rech"
+  onfocus"if (this.value == 'recherche') {this.value = '';}"
+  onblur="if (this.value == '') {this.value = 'recherche';}" />
+</form>
+
+
+
+<script type="text/javascript">
+
+  var infobulle;
+  var markerMember;
+  function coordonneesGPS(){
+    address = document.getElementById('cher').value;
+    geocoder = new GClientGeocoder();
+    z = 10;
+    geocoder.getLatLng(
+     address,
+     function(point) {
+      if (!point) {
+       alert("- "+address+" n'existe pas");
+      }else{
+       var a =  point.lat();
+       var b =  point.lng();
+      document.getElementById('answer').innerHTML = CoodonneesGpsAdresse;
+       initialize3(address,a,b,z);
+      }});
+   }
+
+  function initialize3(address,a,b,z){
+    map = new GMap2(document.getElementById('mapG3'));
+    map.addControl(new GLargeMapControl3D());
+    map.addControl(new GMenuMapTypeControl());
+    map.setMapType(G_HYBRID_MAP);
+    map.checkResize();
+
+    map.setCenter(new GLatLng(a,b), z);
+    if(address!=''){
+      var geocoder = new GClientGeocoder();
+      geocoder.getLatLng(address, function(point){ map.setCenter(point,z); });
+    }
+    myMarker = createMarker(new GLatLng(a,b)); // Ajout du marqueur
+    map.addOverlay(markerMember);
+  }
+
+  function createMarker(point){
+    var marker = new GMarker(point);
+    GEvent.addListener(marker, "click", function(latlng) {
+      var lat = latlng.lat();
+      var lng = latlng.lng();
+      var  DegMinSec = convert_DMS(lat,lng);
+      marker.openInfoWindowHtml(DegMinSec);
+    });
+    return marker;
+  }
+
+  function convert_DMS(lat,lng){
+    var c_lat = getDMS(lat);
+    var c_lng = getDMS(lng);
+    var coordonnees = CoodonneesGpsAdresse;
+    return coordonnees;
+  }
+
+  function getDMS(coord){
+    // On récupère les degrés
+    var i1 = Math.floor(coord);
+    var r1 = coord - i1;
+    // On récupère les minutes
+    var r2 = r1 * 60;
+    var i2 = Math.floor(r2);
+    // On récupère les secondes
+    var r3 = r2 - i2;
+    var i3 = r3 * 60
+    i3 = Math.floor(i3*100) / 100;
+
+    return i1+' ° '+i2+' min '+i3+' sec';
+  }
+
+  coordonneesGPS();
+
+</script>
+</body>
+</html>
