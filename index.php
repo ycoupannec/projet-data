@@ -1,17 +1,41 @@
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <?php
 require_once "include/fonction.php";
+require_once "include/Mustache/Autoloader.php";
+Mustache_Autoloader::register();
 
 
-  require_once "include/Mustache/Autoloader.php";
-  Mustache_Autoloader::register();
+//on explique à Mustach qu'on va utiliser comme extension le .html
+$options =  array('extension' => '.html');
 
-  
+$m = new Mustache_Engine(array(
+    'loader' => new Mustache_Loader_FilesystemLoader('template', $options),
+));
+echo $m->render('header');
+if (!request('action')){
+    $film=new film();
+    $allFilm=$film->allFilm();
 
-  //on explique à Mustach qu'on va utiliser comme extension le .html
-  $options =  array('extension' => '.html');
+    for ($i=0; $i < count($allFilm); $i++) { 
+         # code...
+        $allFilm[$i]['URL']=URL_SITE.'index.php?action=viewByFilmId&id='.$allFilm[$i]['id'];
+    }
+     // print_r(array('Film' => $allFilm));
+    // print_r($film ->getLieux($allFilm['id']));
+     echo $m->render('index',array('Film' => $allFilm));
 
-  $m = new Mustache_Engine(array(
-      'loader' => new Mustache_Loader_FilesystemLoader('template', $options),
-  ));
+
+}else if(request('action')=="viewByFilmId"){
+    $id=request('id');
+    // $lieux=new lieu();
+    // $tabLieux=$lieux->getByFilmId($id);
+    $film=new film();
+    $allFilm=$film->getById($id);
+
+    
+
+    echo $m->render('map');
+    echo $m->render('mapleaflet',$allFilm);
+}
+
+echo $m->render('footer');

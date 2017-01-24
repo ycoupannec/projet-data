@@ -176,10 +176,10 @@ class film {
 
         // récupèreration dans la base de données = on obtient un Array
         
-		$data = $this->sql->fetch("SELECT * FROM `ltp_film` WHERE id=:id", array(':id' =>$id ));
-        $data['lieux'] = $this->getLieux($id);
-        $data['realisateur'] = $this->getRealisateur($id);
-        $data['arrondissement'] = $this->getArrondissement($id);
+		$data = $this->sql->fetch("SELECT * FROM `ltp_film` WHERE id=:id", array(':id' =>$id));
+         $data['lieux'] = $this->getLieux($id);
+         $data['realisateurs'] = $this->getRealisateur($id);
+        // $data['arrondissement'] = $this->getArrondissement($id);
         return $data;
     }
 
@@ -263,7 +263,7 @@ class realisateur{
 	function getById($id) {
 
         // récupèreration dans la base de données = on obtient un Array
-        $data = $this->sql->fetch("SELECT * FROM `ltp_realisateur` WHERE id=:id", array(':id' =>$id ));
+        $data = $this->sql->fetch("SELECT * FROM `ltp_realisateur` WHERE `id`=:id", array(':id' =>$id ));
 
         return $data;
     }
