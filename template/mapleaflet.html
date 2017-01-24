@@ -11,7 +11,7 @@
 		id: 'mapbox.streets'
 		}).addTo(mymap);
 
-		/*infos sur un film en "dur"*/
+
 		var infoFilm = 
 			[	{{#lieux}}
 				{
@@ -20,7 +20,6 @@
 					date: "{{date_debut_evenement}}",
 					adresse:"{{adresse_complete}}",
 					coord: [{{geo_coordinates}}],
-					text: "Commentaires sur cette scène 01"
 				},
 				{{/lieux}}
 				
@@ -29,13 +28,12 @@
 
 		for (var i = 0; i < infoFilm.length; i++)
 			{
-				var numeroModal=[i];
 
-				addMarker(infoFilm[i].titre, infoFilm[i].coord, infoFilm[i].adresse, infoFilm[i].realisateur, infoFilm[i].date, infoFilm[i].text, numeroModal);
+				addMarker(infoFilm[i].titre, infoFilm[i].coord, infoFilm[i].adresse, infoFilm[i].realisateur, infoFilm[i].date);
 			}
 
 
-		function addMarker(titre,coord,adresse,realisateur,date,text, numeroModal)
+		function addMarker(titre,coord,adresse,realisateur,date)
 			{
 					var greenIcon = L.icon({
 					iconUrl: 'assets/img/marker.png',
@@ -43,27 +41,19 @@
 
 					iconSize:     [35, 60],
 					shadowSize:   [50, 40],
-					iconAnchor:   [22, 94],
-					shadowAnchor: [8, 72],
-					popupAnchor:  [-3, -76]
+					iconAnchor:   [22, 55],
+					shadowAnchor: [8, 32],
 				});
 
 				var marker = L.marker(coord, {icon: greenIcon}).addTo(mymap).on('click', function(e)
 					{
-						/*document.getElementById("bgBlack").classList.remove("hideModal");*/
 						document.getElementById("titreFilm").innerHTML = titre;
 						document.getElementById("realisateurFilm").innerHTML = "Réalisateur: "+realisateur;
 						document.getElementById("adresseFilm").innerHTML = "Adresse: "+adresse;
 						document.getElementById("dateFilm").innerHTML = "Date: "+date;
-						document.getElementById("commentairesFilm").innerHTML = "Commentaires:"+text;
 						document.getElementById("mzzrFckngBtn").click();
 					});
 
-			}
-
-		function showMap()
-			{
-				document.getElementById("bgBlack").classList.add("hideModal");
 			}
 
 </script>
