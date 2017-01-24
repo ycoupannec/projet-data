@@ -2,7 +2,7 @@
 <body>
 
 	<!--LEAFLET MAP-->
-	<div id="mapid"></div>
+	<main id="mapid"></main>
 
 	<!-- Button trigger modal -->
 	<button id="mzzrFckngBtn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
@@ -29,8 +29,29 @@
 	  </div>
 	</div>
 
-<img src="assets/img/minilogo.svg" />
+<aside id="zoneRecherche" class="container">
 
+
+	<div class="col-xs-3">
+		<img src="assets/img/minilogo.svg" />
+	</div>
+
+
+	<div class="col-xs-9">
+
+		<!--<p>Titre du film:</p>-->
+
+		<select class="selectpicker show-menu-arrow" data-live-search="true" data-size="5">
+			{{#Film}}
+			<a href="{{URL}}">
+			<option data-icon="glyphicon-film" value="{{id}}">{{titre}}</option></a>
+			{{/Film}}
+		</select>
+
+	</div>
+
+
+</aside>
 
 </body>
 
