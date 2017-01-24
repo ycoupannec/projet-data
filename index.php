@@ -31,7 +31,7 @@ if (!request('action')){
     // $tabLieux=$lieux->getByFilmId($id);
     $film=new film();
     $allFilm=$film->getById($id);
-
+	/*print_r($allFilm);*/
     
 
     echo $m->render('map');

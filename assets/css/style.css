@@ -12,7 +12,7 @@ body {
 
 .modal-content{
     color: #FFFFFF;
-    background-color: #505F7E;
+    background-color: #282F3E;
     border-radius: 2px;
 }
 
@@ -21,7 +21,7 @@ body {
 }
 
 .modal-footer button{
-    background-color: #282F3E;
+    background-color: #1E232F;
     border: none;
     border-radius: 2px;
 }

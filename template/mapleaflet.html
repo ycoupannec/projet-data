@@ -1,7 +1,7 @@
 <script type="text/javascript">
 
 		/*affichage de la map et définition du point d'arrivée sur la carte*/
-		var mymap = L.map('mapid').setView([48.820514, 2.303955], 13);
+		var mymap = L.map('mapid').setView([48.85839, 2.34215], 11);
 
 		/*type de "tiles" pour la map, on peut en changer (skin)*/		L.tileLayer('https://api.mapbox.com/styles/v1/benoitm/ciy5sprke005d2rpb6dxry2ah/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiYmVub2l0bSIsImEiOiJjaXk1c24ycGYwMDJwMzNyamhmaXc2dTNnIn0.065FxCTP4WiqVfnlubCMmA', {
 		maxZoom: 18,
@@ -13,28 +13,30 @@
 
 
 		var infoFilm = 
-			[	{{#lieux}}
+			[
+				{{#lieux}}
 				{
 					titre: "{{titre}}",
 					realisateur: "{{realisateur}}",
 					date: "{{date_debut_evenement}}",
 					adresse:"{{adresse_complete}}",
 					coord: [{{geo_coordinates}}],
+					cadre: "{{cadre}}"
 				},
 				{{/lieux}}
-				
 			];
 	
 
 		for (var i = 0; i < infoFilm.length; i++)
 			{
 
-				addMarker(infoFilm[i].titre, infoFilm[i].coord, infoFilm[i].adresse, infoFilm[i].realisateur, infoFilm[i].date);
+				addMarker(infoFilm[i].titre, infoFilm[i].coord, infoFilm[i].adresse, infoFilm[i].realisateur, infoFilm[i].date, infoFilm[i].cadre);
 			}
 
 
-		function addMarker(titre,coord,adresse,realisateur,date)
+		function addMarker(titre,coord,adresse,realisateur,date, cadre)
 			{
+					/*intégration du skin du marker*/
 					var greenIcon = L.icon({
 					iconUrl: 'assets/img/marker.png',
 					shadowUrl: 'assets/img/markershadow.png',
@@ -45,12 +47,14 @@
 					shadowAnchor: [8, 32],
 				});
 
+				/*parametres du marker et insertion de ces parametres dans la modal bootstrap*/
 				var marker = L.marker(coord, {icon: greenIcon}).addTo(mymap).on('click', function(e)
 					{
 						document.getElementById("titreFilm").innerHTML = titre;
 						document.getElementById("realisateurFilm").innerHTML = "Réalisateur: "+realisateur;
 						document.getElementById("adresseFilm").innerHTML = "Adresse: "+adresse;
-						document.getElementById("dateFilm").innerHTML = "Date: "+date;
+						document.getElementById("dateFilm").innerHTML = "Date de tournage: "+date;
+						document.getElementById("cadreFilm").innerHTML = "Cadre: "+cadre;
 						document.getElementById("mzzrFckngBtn").click();
 					});
 
