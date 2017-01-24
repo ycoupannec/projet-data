@@ -1,4 +1,4 @@
-
+// le lien pour la solution : https://openclassrooms.com/courses/creer-un-moteur-de-recherche-avec-sphinx-et-php
 // C'est un exemple, il faut installer Sphinx avant et le configurer j'ai pas encore réussi à le faire fonctionner 
 <?php
     require 'api/sphinxapi.php';
