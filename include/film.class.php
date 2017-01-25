@@ -17,7 +17,7 @@ class film {
          $data['arrondissement'] = $this->getArrondissement($id);
          $data['poster'] = $this->getPoster($data['titre']);
          $data['overview'] = $this->getOverview($data['titre']);
-         
+         print_r($data);
         
         return $data;
     }
@@ -79,19 +79,19 @@ class movieAPI
     {
         $keyCache = md5($titre);
         
-        if (file_exists('cache/'.$keyCache.'.txt')){
+         if (file_exists('cache/'.$keyCache.'.txt')){
             $this->movie = unserialize(file_get_contents('cache/'.$keyCache.'.txt'));
-        }else
-        {
+         }else
+         {
             $this->tmdb = new TMDB();
             $this->tmdb->setAPIKey(APIKEY);
             $this->movies = $this->tmdb->searchMovie($titre);
             $this->movie = $this->tmdb->getMovie($this->getID());    
-            file_put_contents('cache/'.$keyCache.'.txt',serialize($this->movie));
+            //file_put_contents('cache/'.$keyCache.'.txt',serialize($this->movie));
         }
 
         
-        // print_r($this->movie);
+         print_r($this->movie);
 
     }
     function getID(){
@@ -114,7 +114,7 @@ class movieAPI
 
     }
     function getPoster(){
-        $picture = $this->tmdb->getImageURL() . $this->movie->getPoster();
+        $picture = "http://image.tmdb.org/t/p/original/". $this->movie->getPoster();
         return $picture;
     }
     function getTagline(){
