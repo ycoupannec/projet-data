@@ -20,7 +20,7 @@ $m = new Mustache_Engine(array(
     'loader' => new Mustache_Loader_FilesystemLoader('template', $options),
 ));
 
-echo $m->render('header.inc');
+/*echo $m->render('header.inc');*/
 // .inc.html
 
 if (!request('action')){
@@ -34,8 +34,10 @@ if (!request('action')){
     }
      // print_r(array('Film' => $allFilm));
     // print_r($film ->getLieux($allFilm['id']));
-     echo $m->render('index.inc',array('Film' => $allFilm, "URL"=>URL_SITE));
+		$cssAccueil="<link rel='stylesheet' href='assets/css/style_accueil.css' />";
 
+	 echo $m->render('header.inc', array('css'=>$cssAccueil));
+     echo $m->render('index.inc',array('Film' => $allFilm, "URL"=>URL_SITE));
 
 }else if(request('action')=="viewByFilmId"){
     $id=request('id');
@@ -59,7 +61,9 @@ if (!request('action')){
             $listFilm[$i]['active'] = true;
         }
     }
+	$cssMap="<link rel='stylesheet' href='assets/css/stylemap.css' />";
 
+ 	echo $m->render('header.inc', array('css'=>$cssMap));
     echo $m->render('map.inc', array('Film' => $listFilm,"URL"=>URL_SITE));
     echo $m->render('mapleaflet',$allFilm);
 }
