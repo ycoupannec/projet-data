@@ -33,18 +33,15 @@
 
 
 	<div class="col-xs-3">
-		<img src="assets/img/minilogo.svg" />
+		<img src="assets/img/minilogo.svg"/>
 	</div>
 
 
 	<div class="col-xs-9">
 
-		<!--<p>Titre du film:</p>-->
-
 		<select class="selectpicker show-menu-arrow" data-live-search="true" data-size="5">
 			{{#Film}}
-			<a href="{{URL}}">
-			<option data-icon="glyphicon-film" value="{{id}}">{{titre}}</option></a>
+			<option name="pouet" data-icon="glyphicon-film" value="{{id}}" {{#active}}selected{{/active}}>{{titre}}</option>
 			{{/Film}}
 		</select>
 
@@ -52,6 +49,16 @@
 
 
 </aside>
+
+<script>
+	var prout = document.querySelectorAll("li");
+	console.log(prout);
+
+
+	$(".selectpicker").change(function(){
+		window.location = "http://benoitm.student.codeur.online/projet-data/index.php?action=viewByFilmId&id="+$(this).val();
+	});
+</script>
 
 </body>
 

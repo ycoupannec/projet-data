@@ -44,7 +44,12 @@ if (!request('action')){
 	for ($i=0; $i < count($listFilm); $i++) {
          # code...
         $listFilm[$i]['URL']=URL_SITE.'index.php?action=viewByFilmId&id='.$listFilm[$i]['id'];
-    }
+
+		$listFilm[$i]['active'] = false;
+		if($listFilm[$i]['id'] == $id){
+			$listFilm[$i]['active'] = true;
+		}
+	}
     
 
     echo $m->render('map', array('Film' => $listFilm));
