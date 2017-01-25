@@ -2,15 +2,10 @@
 <body>
 
 	<!--LEAFLET MAP-->
-	<div id="mapid"></div>
-	
-	<!--MODAL-->
-	<div id="positionModal"></div>
-    <div id="positionButtonModal"></div>
-    
-    
+	<main id="mapid"></main>
+
 	<!-- Button trigger modal -->
-	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
+	<button id="mzzrFckngBtn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
 	  Launch demo modal
 	</button>
 
@@ -19,14 +14,13 @@
 	  <div class="modal-dialog" role="document">
 		<div class="modal-content">
 		  <div class="modal-header">
-			<h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+			<h5 class="modal-title" id="titreFilm"></h5>
 		  </div>
 		  <div class="modal-body">
-			<p id="titreFilm">Titre du film:</p>
-			<p id="realisateurFilm">Réalisateur:</p>
-			<p id="adresseFilm">Lieu de tournage:</p>
-			<p id="dateFilm">Date de tournage:</p>
-			<p id="commentairesFilm">Commentaires:</p>
+			<p id="realisateurFilm"></p>
+			<p id="adresseFilm"></p>
+			<p id="cadreFilm"></p>
+			<p id="dateFilm"></p>
 		  </div>
 		  <div class="modal-footer">
 			<button type="button" class="btn btn-secondary" data-dismiss="modal">Revenir à la carte</button>
@@ -35,14 +29,37 @@
 	  </div>
 	</div>
 
+<aside id="zoneRecherche" class="container">
 
 
+	<div class="col-xs-3">
+		<img src="assets/img/minilogo.svg"/>
+	</div>
 
 
-<!-- <script src="assets/js/mapleaflet.js"></script> -->
+	<div class="col-xs-9">
+
+		<select class="selectpicker show-menu-arrow" data-live-search="true" data-size="5">
+			{{#Film}}
+			<option name="pouet" data-icon="glyphicon-film" value="{{id}}" {{#active}}selected{{/active}}>{{titre}}</option>
+			{{/Film}}
+		</select>
+
+	</div>
+
+
+</aside>
+
+<script>
+	var prout = document.querySelectorAll("li");
+	console.log(prout);
+
+
+	$(".selectpicker").change(function(){
+		window.location = "http://benoitm.student.codeur.online/projet-data/index.php?action=viewByFilmId&id="+$(this).val();
+	});
+</script>
+
 </body>
-
-
-
 
 </html>

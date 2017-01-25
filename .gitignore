@@ -46,5 +46,9 @@ Network Trash Folder
 Temporary Items
 .apdisk
 include/.init.php
+<<<<<<< HEAD
 /include/.init.php
 .init.php
+=======
+.init.php
+>>>>>>> Ben_MaJ

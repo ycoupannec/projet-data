@@ -11,7 +11,11 @@ $options =  array('extension' => '.html');
 $m = new Mustache_Engine(array(
     'loader' => new Mustache_Loader_FilesystemLoader('template', $options),
 ));
+
+
 echo $m->render('header');
+
+
 if (!request('action')){
     $film=new film();
     $allFilm=$film->allFilm();
@@ -29,12 +33,26 @@ if (!request('action')){
     $id=request('id');
     // $lieux=new lieu();
     // $tabLieux=$lieux->getByFilmId($id);
-    $film=new film();
-    $allFilm=$film->getById($id);
 
+	$film=new film();
+    $allFilm=$film->getById($id);
+	/*print_r($allFilm);*/
+
+    $listFilm=$film->allFilm();
+
+
+	for ($i=0; $i < count($listFilm); $i++) {
+         # code...
+        $listFilm[$i]['URL']=URL_SITE.'index.php?action=viewByFilmId&id='.$listFilm[$i]['id'];
+
+		$listFilm[$i]['active'] = false;
+		if($listFilm[$i]['id'] == $id){
+			$listFilm[$i]['active'] = true;
+		}
+	}
     
 
-    echo $m->render('map');
+    echo $m->render('map', array('Film' => $listFilm));
     echo $m->render('mapleaflet',$allFilm);
 }
 
