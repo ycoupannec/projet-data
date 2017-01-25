@@ -1,12 +1,14 @@
 body {
     padding: 0;
     margin: 0;
-}
-html, body, #mapid {
-    height: 80vh;
-    width: 100vw;
+	background-color: #505F7E;
 }
 
+#mapid{
+	height: 85vh;
+	width:100vw;
+	z-index: 0;
+}
 
 .modal-content{
     color: #FFFFFF;
@@ -22,4 +24,8 @@ html, body, #mapid {
     background-color: #282F3E;
     border: none;
     border-radius: 2px;
+}
+
+#mzzrFckngBtn{
+	display: none;
 }
