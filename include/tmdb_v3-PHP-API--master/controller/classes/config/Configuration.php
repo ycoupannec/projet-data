@@ -37,6 +37,7 @@ class Configuration {
 		// Note: There is no API Key inside the default conf
 		if(!isset($cnf)) {
 			require_once( dirname(__FILE__) . "/../../../configuration/default.php");
+		
 		}
 		
 		$this->setAPIKey($cnf['apikey']);
@@ -44,6 +45,7 @@ class Configuration {
 		$this->setTimeZone('timezone');
 		$this->setAdult($cnf['adult']);
 		$this->setDebug($cnf['debug']);
+		
 		
 		foreach($cnf['appender'] as $type => $appender) {
 			$this->setAppender($appender, $type);

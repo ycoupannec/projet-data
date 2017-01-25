@@ -127,10 +127,12 @@ class Movie{
 	 */
 	public function getReviews() {
 		$reviews = array();
-
-		foreach ($this->_data['review']['result'] as $data) {
-			$reviews[] = new Review($data);
+		if(!empty($this->_data['review']['result'])){
+			foreach ($this->_data['review']['result'] as $data) {
+				$reviews[] = new Review($data);
+			}
 		}
+		
 
 		return $reviews;
 	}
@@ -187,5 +189,11 @@ class Movie{
 	public function getJSON() {
 		return json_encode($this->_data, JSON_PRETTY_PRINT);
 	}
+
+	public function getOverview() {
+		return $this->_data['overview'];
+	}
+
+
 }
 ?>

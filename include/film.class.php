@@ -15,8 +15,9 @@ class film {
          $realisateur= $this->getRealisateur($id);
          $data['realisateur'] =$realisateur["realisateur"];
          $data['arrondissement'] = $this->getArrondissement($id);
-         // print_r($data);
-         // exit;
+         $data['poster'] = $this->getPoster($data['titre']);
+         $data['overview'] = $this->getOverview($data['titre']);
+         
         
         return $data;
     }
@@ -46,12 +47,83 @@ class film {
     // récupèrer une liste de films à partir d'un titre
     // @param $titre string Titre du film
     function findByTitre($titre) {
-    	$data=$this->sql->fetch("SELECT * FROM `ltp_film` WHERE titre=:titre", array(':titre' =>$titre ));
+    	$data = $this->sql->fetch("SELECT * FROM `ltp_film` WHERE titre=:titre", array(':titre' =>$titre ));
 		return $data;
     }
     function allFilm(){
-    	$data=$this->sql->fetchAll("SELECT * FROM `ltp_film` ");
+    	$data = $this->sql->fetchAll("SELECT * FROM `ltp_film` ");
 		return $data;
+    }
+    function getOverview($titre){
+        $movie = new movieAPI($titre);
+        return  $movie->getOverview();
+    }
+    function getPoster($titre){
+        $movie = new movieAPI($titre);
+        return $movie->getPoster();
     }
 
 }
+
+
+/**
+* 
+*/
+class movieAPI
+{
+    private $movie;
+    private $tmdb;
+    private $movies;
+
+    function __construct($titre)
+    {
+        $keyCache = md5($titre);
+        
+        if (file_exists('cache/'.$keyCache.'.txt')){
+            $this->movie = unserialize(file_get_contents('cache/'.$keyCache.'.txt'));
+        }else
+        {
+            $this->tmdb = new TMDB();
+            $this->tmdb->setAPIKey(APIKEY);
+            $this->movies = $this->tmdb->searchMovie($titre);
+            $this->movie = $this->tmdb->getMovie($this->getID());    
+            file_put_contents('cache/'.$keyCache.'.txt',serialize($this->movie));
+        }
+
+        
+        // print_r($this->movie);
+
+    }
+    function getID(){
+        return $this->movies[0]->getID();
+        // return 11;
+    }
+    function getReviews(){
+        return $this->movie->getReviews();
+    }
+    function getGenres(){
+        return $this->movie->getGenres();
+    }
+    function getTrailer(){
+        return $this->movie->getTrailer();
+    }
+    function getTrailers(){
+        
+        $test = $this->movie->getTrailers();
+        return $test;
+
+    }
+    function getPoster(){
+        $picture = $this->tmdb->getImageURL() . $this->movie->getPoster();
+        return $picture;
+    }
+    function getTagline(){
+        return $this->movie->getTagline();
+    }
+    function getOverview(){
+        return $this->movie->getOverview();
+    }
+}
+
+
+

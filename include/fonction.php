@@ -28,20 +28,5 @@ function get_info_movie($titre){
 	return $infos;
 }
 
-function testTMDB(){
-	$apikey="83f0bbdeeb5edce1cd036b60128e5a25";
-	$tmdb = new TMDB($apikey, 'en', true);
-	$movies = $tmdb->searchMovie("underworld");
 
-    echo '  <div class="panel panel-default">
-                <div class="panel-body">
-                    <ul>';
 
-    foreach($movies as $movie){
-        echo '          <li>'. $movie->getTitle() .' (<a href="https://www.themoviedb.org/movie/'. $movie->getID() .'">'. $movie->getID() .'</a>)</li>';
-    }
-
-    echo '          </ul>
-                </div>
-            </div>';
-}
