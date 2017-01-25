@@ -46,10 +46,12 @@ class Configuration {
 		$this->setAdult($cnf['adult']);
 		$this->setDebug($cnf['debug']);
 		
-		
-		foreach($cnf['appender'] as $type => $appender) {
+		if(!empty($cnf['appender'])){
+			foreach($cnf['appender'] as $type => $appender) {
 			$this->setAppender($appender, $type);
+		}	
 		}
+		
 	}
 	
 	//------------------------------------------------------------------------------
