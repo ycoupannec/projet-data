@@ -1,15 +1,7 @@
 
 <?php
 require_once "include/fonction.php";
-require_once "include/insertBdo.php";
 require_once "include/Mustache/Autoloader.php";
-require_once "include/.init.php";
-require_once "include/film.class.php";
-require_once "include/realisateur.class.php";
-require_once "include/lieu.class.php";
-require_once "include/arrondissement.class.php";
-require_once "include/SQL.class.php";
-require_once "include/tmdb_v3-PHP-API--master/tmdb-api.php";
 Mustache_Autoloader::register();
 
 
@@ -20,21 +12,21 @@ $m = new Mustache_Engine(array(
     'loader' => new Mustache_Loader_FilesystemLoader('template', $options),
 ));
 
-echo $m->render('header.inc');
-// .inc.html
+
+echo $m->render('header');
+
 
 if (!request('action')){
-    $film = new film();
-    $allFilm = $film->allFilm();
+    $film=new film();
+    $allFilm=$film->allFilm();
 
     for ($i=0; $i < count($allFilm); $i++) { 
          # code...
-        // à ajouter à la class film : get url
         $allFilm[$i]['URL']=URL_SITE.'index.php?action=viewByFilmId&id='.$allFilm[$i]['id'];
     }
      // print_r(array('Film' => $allFilm));
     // print_r($film ->getLieux($allFilm['id']));
-     echo $m->render('index.inc',array('Film' => $allFilm));
+     echo $m->render('index',array('Film' => $allFilm));
 
 
 }else if(request('action')=="viewByFilmId"){
@@ -42,27 +34,26 @@ if (!request('action')){
     // $lieux=new lieu();
     // $tabLieux=$lieux->getByFilmId($id);
 
-    $film=new film();
+	$film=new film();
     $allFilm=$film->getById($id);
-    /*print_r($allFilm);*/
+	/*print_r($allFilm);*/
 
     $listFilm=$film->allFilm();
 
 
-
-    for ($i=0; $i < count($listFilm); $i++) {
+	for ($i=0; $i < count($listFilm); $i++) {
          # code...
         $listFilm[$i]['URL']=URL_SITE.'index.php?action=viewByFilmId&id='.$listFilm[$i]['id'];
 
-        $listFilm[$i]['active'] = false;
-        if($listFilm[$i]['id'] == $id){
-            $listFilm[$i]['active'] = true;
-        }
-    }
+		$listFilm[$i]['active'] = false;
+		if($listFilm[$i]['id'] == $id){
+			$listFilm[$i]['active'] = true;
+		}
+	}
+    
 
-    echo $m->render('map.inc', array('Film' => $listFilm,"URL"=>URL_SITE));
+    echo $m->render('map', array('Film' => $listFilm));
     echo $m->render('mapleaflet',$allFilm);
 }
 
-echo $m->render('footer.inc');
-// testTMDB();
+echo $m->render('footer');
