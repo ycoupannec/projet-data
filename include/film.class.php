@@ -17,7 +17,7 @@ class film {
          $data['arrondissement'] = $this->getArrondissement($id);
          $data['poster'] = $this->getPoster($data['titre']);
          $data['overview'] = $this->getOverview($data['titre']);
-         print_r($data);
+         
         
         return $data;
     }
@@ -91,7 +91,7 @@ class movieAPI
         }
 
         
-         print_r($this->movie);
+         
 
     }
     function getID(){
