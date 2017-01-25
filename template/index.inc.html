@@ -1,11 +1,39 @@
 <body>
 	
+
+	<header>
+		<div id="carrebleu_left">
+			<div id="carrebleu_right">
+				<h1 class="text-center "><img src="assets/img/title.png " alt="La traversée de Paris "></h1>
+			</div>
+		</div>
+	</header>
+	<!-- bordure pellicule cinéma -->
+	<!-- <img id="img_bordure_left " src="maquette/bordure.svg " alt="bordure" style="float: left">
+	<img id="img_bordure_right " src="maquette/bordure.svg " alt="bordure " style="float:right"> -->
+	<div id="carrebleu_left">
+		<div id="carrebleu_right">
+
+			<div class="container" style="min-height:100vh;">
+				<div class="row ">
+					<div class="col-md-12 ">
+
+						<select class="selectpicker show-menu-arrow" data-live-search="true" data-size="5">
+							{{#Film}}
+								<option name="pouet" data-icon="glyphicon-film" value="{{id}}" {{#active}}selected{{/active}}>{{titre}}</option>
+							{{/Film}}
+						</select>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 	
-	<ul>
-		{{#Film}}
-		<a href="{{URL}}"><li>{{titre}}</li></a>
-		{{/Film}}
-	</ul>
-	
+	<script>
+		$(".selectpicker").change(function(){
+			window.location = "{{URL}}index.php?action=viewByFilmId&id="+$(this).val();
+		});
+	</script>
 
 </body>

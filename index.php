@@ -34,7 +34,7 @@ if (!request('action')){
     }
      // print_r(array('Film' => $allFilm));
     // print_r($film ->getLieux($allFilm['id']));
-     echo $m->render('index.inc',array('Film' => $allFilm));
+     echo $m->render('index.inc',array('Film' => $allFilm, "URL"=>URL_SITE));
 
 
 }else if(request('action')=="viewByFilmId"){

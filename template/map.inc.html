@@ -51,10 +51,6 @@
 </aside>
 
 <script>
-	var prout = document.querySelectorAll("li");
-	console.log(prout);
-
-
 	$(".selectpicker").change(function(){
 		window.location = "{{URL}}index.php?action=viewByFilmId&id="+$(this).val();
 	});

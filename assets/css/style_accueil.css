@@ -1,0 +1,50 @@
+body {
+  background-color: #505F7E;
+  background-image:  url("../img/wallpaper-logo.svg");
+  background-repeat: no-repeat;
+  background-position: center top;
+  height: 100%;
+/*W3S center background*/
+}
+h1{
+}
+/*#img_bordure_left{
+  float: left;
+}
+#img_bordure_right{
+  float: right;
+}*/
+#carrebleu_left{
+  background-image: url("../img/carrebleu.svg");
+  background-repeat: repeat-y;
+  background-position: left;
+}
+#carrebleu_right{
+  background-image: url("../img/carrebleu.svg");
+  background-repeat: repeat-y;
+  background-position: right;
+
+}
+
+#route{
+  padding: 70px 0;
+  text-align: center;
+}
+.form{
+  padding-top: 20%;
+  text-align: center;
+    z-index: 1;
+
+}
+#GObutton{
+  margin-left: 0%;
+  margin-right: 5%;
+  text-align: center;
+  z-index: 1;
+}
+#img_bordure_left{
+  float: left;
+}
+#img_bordure_right{
+  float: right;
+}
