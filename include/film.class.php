@@ -96,7 +96,7 @@ class movieAPI
                 $this->movie = $this->tmdb->getMovie($this->getID()); 
             }
                
-            //file_put_contents('cache/'.$keyCache.'.txt',serialize($this->movie));
+            file_put_contents('cache/'.$keyCache.'.txt',serialize($this->movie));
         }
 
         
