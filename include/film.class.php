@@ -56,11 +56,17 @@ class film {
     }
     function getOverview($titre){
         $movie = new movieAPI($titre);
-        return  $movie->getOverview();
+        if(!empty($movie)){
+            return  $movie->getOverview();
+        }
+        return  $movie;
     }
     function getPoster($titre){
         $movie = new movieAPI($titre);
-        return $movie->getPoster();
+        if(!empty($movie)){
+            return  $movie->getPoster();
+        }
+        return $movie;
     }
 
 }
@@ -86,7 +92,10 @@ class movieAPI
             $this->tmdb = new TMDB();
             $this->tmdb->setAPIKey(APIKEY);
             $this->movies = $this->tmdb->searchMovie($titre);
-            $this->movie = $this->tmdb->getMovie($this->getID());    
+            if (!empty($this->movies)){
+                $this->movie = $this->tmdb->getMovie($this->getID()); 
+            }
+               
             //file_put_contents('cache/'.$keyCache.'.txt',serialize($this->movie));
         }
 
@@ -114,14 +123,28 @@ class movieAPI
 
     }
     function getPoster(){
-        $picture = "http://image.tmdb.org/t/p/original/". $this->movie->getPoster();
+        $picture ="";
+        if(!empty($this->movie)){
+            $picture = "http://image.tmdb.org/t/p/original/". $this->movie->getPoster();
+        }
         return $picture;
     }
     function getTagline(){
-        return $this->movie->getTagline();
+        $Tagline = '';
+
+        if(!empty($this->movie)){
+            $Tagline = $this->movie->getTagline();
+        }
+
+        return $Tagline;
     }
     function getOverview(){
-        return $this->movie->getOverview();
+        $Overview = "";
+
+        if(!empty($this->movie)){
+            $Overview = $this->movie->getOverview();
+        }
+        return $Overview;
     }
 }
 
