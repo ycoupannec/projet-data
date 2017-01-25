@@ -10,6 +10,29 @@ body {
 	z-index: 0;
 }
 
+#zoneRecherche{
+	position: absolute;
+	height: 15vh;
+	width: 100vw;
+	z-index:1;
+	box-shadow: 0px -2px 15px 0px rgba(0,0,0,0.36);
+	padding: 0;
+	margin: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.dropdown-menu{
+	background-color: #282F3E;
+	left: -28vw;
+	width: 98vw;
+}
+
+li span{
+	color: #ffffff;
+}
+
 .modal-content{
     color: #FFFFFF;
     background-color: #282F3E;
