@@ -12,8 +12,12 @@ class film {
         
 		$data = $this->sql->fetch("SELECT * FROM `ltp_film` WHERE id=:id", array(':id' =>$id));
          $data['lieux'] = $this->getLieux($id);
-         $data['realisateurs'] = $this->getRealisateur($id);
-        // $data['arrondissement'] = $this->getArrondissement($id);
+         $realisateur= $this->getRealisateur($id);
+         $data['realisateur'] =$realisateur["realisateur"];
+         $data['arrondissement'] = $this->getArrondissement($id);
+         // print_r($data);
+         // exit;
+        
         return $data;
     }
 
@@ -25,7 +29,7 @@ class film {
     }
     function getRealisateur($id) {
         $realisateur = new realisateur();
-        return $realisateur->getById($id);
+        return $realisateur->getByFilmId($id);
     }
     function getArrondissement($id) {
         $arrondissement = new arrondissement();

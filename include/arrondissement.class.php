@@ -18,7 +18,7 @@ class arrondissement{
 	}
 
 	function getByFilmId($id){
-		$data = $this->sql->fetchAll("SELECT `ltp_arrondissement`.* FROM `ltp_arrondissement`, `ltp_lieu` WHERE `ltp_arrondissement`.id=`ltp_lieu`.id_arrondissement and `ltp_lieu`.id_film=:id_film ", array(":id"=>$id));
+		$data = $this->sql->fetchAll("SELECT `ltp_arrondissement`.* FROM `ltp_arrondissement`, `ltp_lieu` WHERE `ltp_arrondissement`.id=`ltp_lieu`.id_arrondissement and `ltp_lieu`.id_film=:id_film ", array(":id_film"=>$id));
 		return $data;
 	}
 

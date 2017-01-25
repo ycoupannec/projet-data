@@ -32,7 +32,7 @@ class realisateur{
         return $data;
     }
     function getByFilmId($id){
-    	$data = $this->sql->fetchAll("SELECT `ltp_realisateur`.* FROM `ltp_realisateur`, `ltp_lieu` WHERE `ltp_realisateur`.id=`ltp_lieu`.id_realisateur and `ltp_realisateur`.id= :id ", array(":id" => $id));
+    	$data = $this->sql->fetch("SELECT `ltp_realisateur`.* FROM `ltp_realisateur`, `ltp_lieu` WHERE `ltp_realisateur`.id=`ltp_lieu`.id_realisateur and `ltp_lieu`.id_film= :id ", array(":id" => $id));
 
         return $data;
     }
