@@ -9,6 +9,8 @@ body {
 	height: 85vh;
 	width:100vw;
 	z-index: 0;
+	display: flex;
+	align-items: flex-end;
 }
 
 #zoneRecherche{
@@ -61,4 +63,28 @@ li span{
 #posterFilm{
 	width: 100%;
 	padding-bottom: 2vh;
+}
+
+#zoneBtnSuivantPrecedent{
+	width: 100vw;
+	display: flex;
+	justify-content: space-between;
+	margin: 1em;
+}
+
+#btnPrecedent, #btnSuivant{
+	/*background-image: url(../img/btnsuivant.svg);*/
+	width: 8em;
+	height: 8em;
+	z-index: 1000;
+	position: relative;
+	display: flex;
+	justify-content: center;
+}
+
+#btnPrecedent img{
+    -ms-transform: rotate(180deg); /* IE 9 */
+    -webkit-transform: rotate(180deg); /* Chrome, Safari, Opera */
+    transform: rotate(180deg);
+}
 }
