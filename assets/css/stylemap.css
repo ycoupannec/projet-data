@@ -73,8 +73,8 @@ li span{
 }
 
 #btnPrecedent, #btnSuivant, #btnFicheFilm{
-	width: 5em;
-	height: 5em;
+	width: 6em;
+	height: 6em;
 	z-index: 1000;
 	position: relative;
 	display: flex;

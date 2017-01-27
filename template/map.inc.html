@@ -1,10 +1,12 @@
 
 <body>
 
+
 	<!--LEAFLET MAP-->
 	<main id="mapid">
 
-		<aside id="zoneBtnSuivantPrecedent">
+		<!--BOUTTONS POUR PASSER AU FILM SUIVANT / VOIR LA FICHE DU FILM-->
+		<section id="zoneBtnSuivantPrecedent">
 
 			<div id="btnPrecedent">
 				<img src="assets/img/btnsuivant.svg" />
@@ -18,43 +20,52 @@
 				<img src="assets/img/btnsuivant.svg" />
 			</div>
 
-		</aside>
+		</section>
+
 	</main>
 
-	<!-- Button trigger modal -->
-	<button id="mzzrFckngBtn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
-	  Launch demo modal
-	</button>
 
-	<!-- Modal -->
-	<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-	  <div class="modal-dialog" role="document">
-		<div class="modal-content">
-		  <div class="modal-header">
-			<h5 class="modal-title" id="titreFilm"></h5>
-		  </div>
-		  <div class="modal-body">
-			<p id="realisateurFilm"></p>
-			<p id="adresseFilm"></p>
-			<p id="cadreFilm"></p>
-			<p id="dateFilm"></p>
-			<p id="overviewFilm"></p>
-			<div class="col-xs-12">
-				<img id="posterFilm" />
-		  	</div>
-		  </div>
-		  <div class="modal-footer">
-			<button type="button" class="btn btn-secondary" data-dismiss="modal">Revenir à la carte</button>
+
+
+	<!--ZONE MODAL-->
+	<aside>
+
+		<!-- BOUTON MODAL -->
+		<button id="mzzrFckngBtn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
+		  Launch demo modal
+		</button>
+
+		<!-- MODAL -->
+		<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+		  <div class="modal-dialog" role="document">
+			<div class="modal-content">
+			  <div class="modal-header">
+				<h5 class="modal-title" id="titreFilm"></h5>
+			  </div>
+			  <div class="modal-body">
+				<p id="realisateurFilm"></p>
+				<p id="adresseFilm"></p>
+				<p id="cadreFilm"></p>
+				<p id="dateFilm"></p>
+				<p id="overviewFilm"></p>
+				<div class="col-xs-12">
+					<img id="posterFilm" />
+				</div>
+			  </div>
+			  <div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Revenir à la carte</button>
+			  </div>
+			</div>
 		  </div>
 		</div>
-	  </div>
-	</div>
+
+	</aside>
 
 
 
-	<!--Zone de recherche en bas-->
+
+	<!--ZONE DE RECHERCHE DU FILM-->
 	<footer id="zoneRecherche" class="container">
-
 
 		<div id="btnHome" class="col-xs-3">
 			<img src="assets/img/minilogo.svg"/>
@@ -71,23 +82,32 @@
 
 		</div>
 
-
 	</footer>
+
 
 	<script>
 
+		/*FONCTIONS DES BOUTONS DE LA PAGE*/
+
+
 		$(".selectpicker").change(function(){
-			window.location = "{{URL}}index.php?action=viewByFilmId&id="+$(this).val();
+		window.location = "{{URL}}index.php?action=viewByFilmId&id="+$(this).val();
 		});
+
+
+		$("#btnHome").click(function(){
+		window.location = "{{URL}}index.php";
+		});
+
 
 		var idFilm = parseInt($(".selectpicker").val());
 
 		$("#btnPrecedent").click(function(){
-			window.location = "{{URL}}index.php?action=viewByFilmId&id="+(idFilm-1);
+		window.location = "{{URL}}index.php?action=viewByFilmId&id="+(idFilm-1);
 		});
 
 		$("#btnSuivant").click(function(){
-			window.location = "{{URL}}index.php?action=viewByFilmId&id="+(idFilm+1);
+		window.location = "{{URL}}index.php?action=viewByFilmId&id="+(idFilm+1);
 		});
 
 
