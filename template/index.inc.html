@@ -26,6 +26,18 @@
 							{{/Film}}
 						</select>
 
+						<select class="selectpicker show-menu-arrow" data-live-search="true" data-size="10">
+							{{#FilmAuteur}}
+								<option name="pouet" data-icon="glyphicon-film" value="{{id}}" {{#active}}selected{{/active}}>{{auteur}}</option>
+							{{/FilmAuteur}}
+						</select>
+
+						<select class="selectpicker show-menu-arrow" data-live-search="true" data-size="10">
+							{{#FilmArrondissement}}
+								<option name="pouet" data-icon="glyphicon-film" value="{{id}}" {{#active}}selected{{/active}}>{{arrondissement}}</option>
+							{{/FilmArrondissement}}
+						</select>
+
 					</div>
 				</div>
 			</div>
