@@ -2,7 +2,13 @@
 <body>
 
 	<!--LEAFLET MAP-->
-	<main id="mapid"></main>
+	<main id="mapid">
+
+		<aside id="zoneBtnSuivantPrecedent">
+			<div id="btnPrecedent"><img src="assets/img/btnsuivant.svg" /></div>
+			<div id="btnSuivant"><img src="assets/img/btnsuivant.svg" /></div>
+		</aside>
+	</main>
 
 	<!-- Button trigger modal -->
 	<button id="mzzrFckngBtn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
@@ -33,32 +39,53 @@
 	  </div>
 	</div>
 
-<aside id="zoneRecherche" class="container">
 
 
-	<div class="col-xs-3">
-		<img src="assets/img/minilogo.svg"/>
-	</div>
+	<!--Zone de recherche en bas-->
+	<footer id="zoneRecherche" class="container">
 
 
-	<div class="col-xs-9">
-
-		<select class="selectpicker show-menu-arrow" data-live-search="true" data-size="5">
-			{{#Film}}
-			<option name="pouet" data-icon="glyphicon-film" value="{{id}}" {{#active}}selected{{/active}}>{{titre}}</option>
-			{{/Film}}
-		</select>
-
-	</div>
+		<div id="btnHome" class="col-xs-3">
+			<img src="assets/img/minilogo.svg"/>
+		</div>
 
 
-</aside>
+		<div class="col-xs-9">
 
-<script>
+			<select class="selectpicker show-menu-arrow" data-live-search="true" data-size="5">
+				{{#Film}}
+				<option name="pouet" data-icon="glyphicon-film" value="{{id}}" {{#active}}selected{{/active}}>{{titre}}</option>
+				{{/Film}}
+			</select>
+
+		</div>
+
+
+	</footer>
+
+	<script>
+
+		$(".selectpicker").change(function(){
+			window.location = "{{URL}}index.php?action=viewByFilmId&id="+$(this).val();
+		});
+
+		var idFilm = parseInt($(".selectpicker").val());
+
+		$("#btnPrecedent").click(function(){
+			window.location = "{{URL}}index.php?action=viewByFilmId&id="+(idFilm-1);
+		});
+
+		$("#btnSuivant").click(function(){
+			window.location = "{{URL}}index.php?action=viewByFilmId&id="+(idFilm+1);
+		});
+
+
+
 	$(".selectpicker").change(function(){
 		window.location = "{{{URL}}}"+$(this).val();
 	});
 </script>
+
 
 </body>
 
