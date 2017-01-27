@@ -30,13 +30,14 @@
 	<!--ZONE MODAL-->
 	<aside>
 
+
 		<!-- BOUTON MODAL -->
-		<button id="mzzrFckngBtn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
+		<button id="mzzrFckngBtn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalMarker">
 		  Launch demo modal
 		</button>
 
 		<!-- MODAL -->
-		<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+		<div class="modal fade" id="modalMarker" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
 		  <div class="modal-dialog" role="document">
 			<div class="modal-content">
 			  <div class="modal-header">
@@ -58,6 +59,7 @@
 			</div>
 		  </div>
 		</div>
+
 
 	</aside>
 
@@ -88,7 +90,6 @@
 	<script>
 
 		/*FONCTIONS DES BOUTONS DE LA PAGE*/
-
 
 		$(".selectpicker").change(function(){
 		window.location = "{{URL}}index.php?action=viewByFilmId&id="+$(this).val();

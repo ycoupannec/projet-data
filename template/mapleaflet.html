@@ -34,6 +34,8 @@
 		{
 
 			addMarker(infoFilm[i].titre, infoFilm[i].coord, infoFilm[i].adresse, infoFilm[i].realisateur, infoFilm[i].date, infoFilm[i].cadre, infoFilm[i].poster, infoFilm[i].overview, infoFilm[i].id_arrondissement);
+
+
 		}
 
 
@@ -58,11 +60,30 @@
 					document.getElementById("adresseFilm").innerHTML = "Adresse: "+adresse;
 					document.getElementById("dateFilm").innerHTML = "Date de tournage: "+date;
 					document.getElementById("cadreFilm").innerHTML = "Cadre: "+cadre;
-					document.getElementById("overviewFilm").innerHTML = "Synopsis: "+overview;
-					document.getElementById("posterFilm").setAttribute("src", poster);
+					/*document.getElementById("overviewFilm").innerHTML = "Synopsis: "+overview;
+					document.getElementById("posterFilm").setAttribute("src", poster);*/
 					document.getElementById("mzzrFckngBtn").click();
 				});
 
 		}
 
+document.getElementById("btnFicheFilm").onclick = function()
+{
+	document.getElementById("titreFilm").innerHTML = infoFilm[0].titre;
+
+	document.getElementById("realisateurFilm").innerHTML = "Réalisateur: "+infoFilm[0].realisateur;
+
+	/*document.getElementById("adresseFilm").innerHTML = "Adresse: "+infoFilm[0].adresse;
+
+	document.getElementById("dateFilm").innerHTML = "Date de tournage: "+infoFilm[0].date;
+
+	document.getElementById("cadreFilm").innerHTML = "Cadre: "+infoFilm[0].cadre;*/
+
+	document.getElementById("overviewFilm").innerHTML = "Synopsis: "+infoFilm[0].overview;
+
+	document.getElementById("posterFilm").setAttribute("src", infoFilm[0].poster);
+
+	document.getElementById("mzzrFckngBtn").click();
+
+}
 </script>
