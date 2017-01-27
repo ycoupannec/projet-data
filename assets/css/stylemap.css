@@ -69,13 +69,12 @@ li span{
 	width: 100vw;
 	display: flex;
 	justify-content: space-between;
-	margin: 1em;
+	margin: 1.5em;
 }
 
-#btnPrecedent, #btnSuivant{
-	/*background-image: url(../img/btnsuivant.svg);*/
-	width: 8em;
-	height: 8em;
+#btnPrecedent, #btnSuivant, #btnFicheFilm{
+	width: 5em;
+	height: 5em;
 	z-index: 1000;
 	position: relative;
 	display: flex;
