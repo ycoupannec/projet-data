@@ -20,19 +20,19 @@
 				<div class="row ">
 					<div id="searchBox" class="col-xs-12">
 
-						<select class="selectpicker show-menu-arrow" data-live-search="true" data-size="10">
+						<select class="selectpicker show-menu-arrow" data-live-search="true" data-size="10" id="Film">
 							{{#Film}}
 								<option name="pouet" data-icon="glyphicon-film" value="{{id}}" {{#active}}selected{{/active}}>{{titre}}</option>
 							{{/Film}}
 						</select>
 
-						<select class="selectpicker show-menu-arrow" data-live-search="true" data-size="10">
-							{{#FilmAuteur}}
-								<option name="pouet" data-icon="glyphicon-film" value="{{id}}" {{#active}}selected{{/active}}>{{auteur}}</option>
-							{{/FilmAuteur}}
+						<select class="selectpicker show-menu-arrow" data-live-search="true" data-size="10" id="FilmRealisateur">
+							{{#FilmRealisateur}}
+								<option name="pouet" data-icon="glyphicon-film" value="{{id}}" {{#active}}selected{{/active}}>{{realisateur}}</option>
+							{{/FilmRealisateur}}
 						</select>
 
-						<select class="selectpicker show-menu-arrow" data-live-search="true" data-size="10">
+						<select class="selectpicker show-menu-arrow" data-live-search="true" data-size="10" id="FilmArrondissement">
 							{{#FilmArrondissement}}
 								<option name="pouet" data-icon="glyphicon-film" value="{{id}}" {{#active}}selected{{/active}}>{{arrondissement}}</option>
 							{{/FilmArrondissement}}
@@ -47,8 +47,14 @@
 	</div>
 	
 	<script>
-		$(".selectpicker").change(function(){
+		$("#Film").change(function(){
 			window.location = "{{URL}}index.php?action=viewByFilmId&id="+$(this).val();
+		});
+		$("#FilmRealisateur").change(function(){
+			window.location = "{{URL}}index.php?action=viewByRealisateurId&idRealisateur="+$(this).val();
+		});
+		$("#FilmArrondissement").change(function(){
+			window.location = "{{URL}}index.php?action=viewByArrondissementId&idArrondissement="+$(this).val();
 		});
 	</script>
 

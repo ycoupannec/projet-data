@@ -26,20 +26,36 @@ $m = new Mustache_Engine(array(
 if (!request('action')){
     $film = new film();
     $allFilm = $film->allFilm();
+    $realisateur=new realisateur();
+    $allRealisateur = $realisateur->findRealisateur();
+    $arrondissement=new arrondissement();
+    $allArrondissement = $arrondissement->findArrondissement();
+
 
     for ($i=0; $i < count($allFilm); $i++) { 
          # code...
         // à ajouter à la class film : get url
         $allFilm[$i]['URL']=URL_SITE.'index.php?action=viewByFilmId&id='.$allFilm[$i]['id'];
     }
+    for ($i=0; $i < count($allRealisateur); $i++) { 
+         # code...
+        // à ajouter à la class film : get url
+        $allRealisateur[$i]['URL']=URL_SITE.'index.php?action=viewByRealisateurId&idRealisateur='.$allRealisateur[$i]['id'];
+    }
+    for ($i=0; $i < count($allArrondissement); $i++) { 
+         # code...
+        // à ajouter à la class film : get url
+        $allArrondissement[$i]['URL']=URL_SITE.'index.php?action=viewByArrondissementId&idArrondissement='.$allArrondissement[$i]['id'];
+    }
      // print_r(array('Film' => $allFilm));
     // print_r($film ->getLieux($allFilm['id']));
 		$cssAccueil="<link rel='stylesheet' href='assets/css/style_accueil.css' />";
 
 	 echo $m->render('header.inc', array('css'=>$cssAccueil));
-     echo $m->render('index.inc',array('Film' => $allFilm, "URL"=>URL_SITE));
+     echo $m->render('index.inc',array('Film' => $allFilm, "URL"=>URL_SITE, 'FilmArrondissement' => $allArrondissement,'FilmRealisateur' => $allRealisateur ));
 
 }else if(request('action')=="viewByFilmId"){
+
     $id=request('id');
     // $lieux=new lieu();
     // $tabLieux=$lieux->getByFilmId($id);
@@ -64,7 +80,92 @@ if (!request('action')){
 	$cssMap="<link rel='stylesheet' href='assets/css/stylemap.css' />";
 
  	echo $m->render('header.inc', array('css'=>$cssMap));
-    echo $m->render('map.inc', array('Film' => $listFilm,"URL"=>URL_SITE));
+    echo $m->render('map.inc', array('Film' => $listFilm,"URL"=>URL_SITE."index.php?action=viewByFilmId&id="));
+    echo $m->render('mapleaflet',$allFilm);
+}else if(request('action')=='viewByArrondissementId'){
+    $idArrondissement=request('idArrondissement');
+    if (request('idFilm')==false){
+        $arrondissements = new arrondissement();
+        $filmArrondissement = $arrondissements->getFilmByArrondissement($idArrondissement);
+        //print_r($arrondissement);
+        
+        $idFilm=$filmArrondissement[0]['id'];
+        // print_r($idFilm);
+        // exit;
+    }else{
+        $arrondissements = new arrondissement();
+        $filmArrondissement = $arrondissements->getFilmByArrondissement($idArrondissement);
+        $idFilm=request('idFilm');
+    }
+    // $lieux=new lieu();
+    // $tabLieux=$lieux->getByFilmId($id);
+
+    $film=new film();
+    $allFilm=$film->getById($idFilm);
+    /*print_r($allFilm);*/
+
+     $listFilm=$filmArrondissement;
+    /*print_r($allFilm);*/
+
+
+
+
+    for ($i=0; $i < count($listFilm); $i++) {
+         # code...
+        $listFilm[$i]['URL']=URL_SITE.'index.php?action=viewByArrondissementId&idFilm='.$listFilm[$i]['id'].'&idArrondissement='.$idArrondissement;
+
+        $listFilm[$i]['active'] = false;
+        if($listFilm[$i]['id'] == $idFilm){
+            $listFilm[$i]['active'] = true;
+        }
+    }
+    $cssMap="<link rel='stylesheet' href='assets/css/stylemap.css' />";
+
+    echo $m->render('header.inc', array('css'=>$cssMap));
+    echo $m->render('map.inc', array('Film' => $listFilm,"URL"=>URL_SITE."index.php?action=viewByArrondissementId&idArrondissement=".$idArrondissement."&idFilm="));
+    echo $m->render('mapleaflet',$allFilm);
+}else if(request('action')=='viewByRealisateurId'){
+    $idRealisateur=request('idRealisateur');
+    if (request('idFilm')==false){
+        $realisateurs = new realisateur();
+        $filmRealisateur = $realisateurs->getFilmByIdRealisateur($idRealisateur);
+        // print_r($realisateurs->getFilmByIdRealisateur($idRealisateur));
+        // exit;
+        
+        $idFilm=$filmRealisateur[0]['id'];
+        // print_r($idFilm);
+        // exit;
+    }else{
+        $idFilm=request('idFilm');
+        $realisateurs = new realisateur();
+        $filmRealisateur = $realisateurs->getFilmByIdRealisateur($idRealisateur);
+        // print_r($realisateurs->getFilmByIdRealisateur($idRealisateur));
+        // exit;
+    }
+    // $lieux=new lieu();
+    // $tabLieux=$lieux->getByFilmId($id);
+
+    $film=new film();
+    $allFilm=$film->getById($idFilm);
+    /*print_r($allFilm);*/
+
+     $listFilm=$filmRealisateur;
+
+
+
+    for ($i=0; $i < count($listFilm); $i++) {
+         # code...
+        $listFilm[$i]['URL']=URL_SITE.'index.php?action=viewByRealisateurId&idFilm='.$listFilm[$i]['id'].'&idRealisateur='.$idRealisateur;
+
+        $listFilm[$i]['active'] = false;
+        if($listFilm[$i]['id'] == $idFilm){
+            $listFilm[$i]['active'] = true;
+        }
+    }
+    $cssMap="<link rel='stylesheet' href='assets/css/stylemap.css' />";
+
+    echo $m->render('header.inc', array('css'=>$cssMap));
+    echo $m->render('map.inc', array('Film' => $listFilm,"URL"=>URL_SITE."index.php?action=viewByRealisateurId&idRealisateur=".$idRealisateur."&idFilm="));
     echo $m->render('mapleaflet',$allFilm);
 }
 

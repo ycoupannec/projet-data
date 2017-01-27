@@ -15,8 +15,12 @@ class film {
          $realisateur= $this->getRealisateur($id);
          $data['realisateur'] =$realisateur["realisateur"];
          $data['arrondissement'] = $this->getArrondissement($id);
-         $data['poster'] = $this->getPoster($data['titre']);
-         $data['overview'] = $this->getOverview($data['titre']);
+         if (!empty($data['titre'])){
+            $data['poster'] = $this->getPoster($data['titre']);   
+         
+            $data['overview'] = $this->getOverview($data['titre']);
+         }
+         
          
         
         return $data;

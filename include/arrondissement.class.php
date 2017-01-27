@@ -7,8 +7,12 @@ class arrondissement{
 		$this->sql= new SQLpdo();
 	}
 
+	
+
 	function getArrondissement($id){
 		$data = $this->sql->fetchAll("SELECT * FROM `ltp_arrondissement` WHERE id=:id",array(":id"=>$id));
+		
+
 		return $data;
 	}
 
@@ -24,11 +28,17 @@ class arrondissement{
 
 	function findArrondissement($nb=0){
 		$data = $this->sql->fetchAll("SELECT `ltp_arrondissement`.* FROM `ltp_arrondissement`");
+		
 		return $data;
 	}
 
 	function getLieuByArrondissement($id){
-		$data = $this->sql->fetchAll("SELECT `ltp_lieu`.* FROM `ltp_lieu`.id_arrondissement=`ltp_arrondissement`.id and `ltp_arrondissement`.id=:id", array(':id'=>$id));
+		$data = $this->sql->fetchAll("SELECT `ltp_lieu`.* FROM `ltp_lieu`, `ltp_arrondissement` WHERE`ltp_lieu`.id_arrondissement=`ltp_arrondissement`.id and `ltp_arrondissement`.id=:id", array(':id'=>$id));
+		return $data;
+	}
+
+	function getFilmByArrondissement($id){
+		$data = $this->sql->fetchAll("SELECT DISTINCT `ltp_film`.* FROM `ltp_film`, `ltp_arrondissement`, `ltp_lieu`  WHERE  `ltp_lieu`.id_arrondissement=`ltp_arrondissement`.id and `ltp_lieu`.id_film=`ltp_film`.id and `ltp_arrondissement`.id=:id", array(':id'=>$id));
 		return $data;
 	}
 }
