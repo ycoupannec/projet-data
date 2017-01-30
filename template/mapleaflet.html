@@ -55,6 +55,7 @@
 			var marker = L.marker(coord, {icon: greenIcon}).addTo(mymap).on('click', function(e)
 				{
 					document.getElementById("titreFilm").innerHTML = titre;
+
 					document.getElementById("realisateurFilm").innerHTML = "Réalisateur: "+realisateur;
 
 					document.getElementById("adresseFilm").classList.remove("infoHide");
@@ -65,13 +66,13 @@
 
 					document.getElementById("cadreFilm").classList.remove("infoHide");
 					document.getElementById("cadreFilm").innerHTML = "Cadre: "+cadre;
-					/*document.getElementById("overviewFilm").innerHTML = "Synopsis: "+overview;*/
 
 					document.getElementById("overviewFilm").classList.add("infoHide");
-					/*document.getElementById("posterFilm").setAttribute("src", poster);*/
 
 					document.getElementById("posterFilm").classList.add("infoHide");
+
 					document.getElementById("adresseFilm").classList.remove("infoHide");
+
 					document.getElementById("mzzrFckngBtn").click();
 				});
 		}
@@ -84,24 +85,16 @@
 
 			document.getElementById("realisateurFilm").innerHTML = "Réalisateur: "+infoFilm[0].realisateur;
 
-			/*document.getElementById("adresseFilm").innerHTML = "Adresse: "+infoFilm[0].adresse;*/
-
 			document.getElementById("adresseFilm").classList.add("infoHide");
 
-			/*document.getElementById("dateFilm").innerHTML = "Date de tournage: "+infoFilm[0].date;*/
-
 			document.getElementById("dateFilm").classList.add("infoHide");
-
-			/*document.getElementById("cadreFilm").innerHTML = "Cadre: "+infoFilm[0].cadre;*/
 
 			document.getElementById("cadreFilm").classList.add("infoHide");
 
 			document.getElementById("overviewFilm").classList.remove("infoHide");
-
 			document.getElementById("overviewFilm").innerHTML = "Synopsis: "+infoFilm[0].overview;
 
 			document.getElementById("posterFilm").classList.remove("infoHide");
-
 			document.getElementById("posterFilm").setAttribute("src", infoFilm[0].poster);
 
 			document.getElementById("mzzrFckngBtn").click();
