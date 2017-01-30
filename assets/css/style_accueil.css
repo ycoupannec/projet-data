@@ -12,12 +12,11 @@ background-image: url("../img/carrebleu.svg");
 background-repeat: repeat-y;
 background-position: left;
 height: 100vh;
-z-index: 2;
 }
 #carrebleu_right{
 padding: 0;
 margin: 0;
-z-index: 2;
+
 background-image: url("../img/carrebleu.svg");
 background-repeat: repeat-y;
 background-position: right;

@@ -1,7 +1,9 @@
-<body>
+<div id="carrebleu_left">
+	<div id="carrebleu_right">
 
-	<div id="carrebleu_left">
-		<div id="carrebleu_right">
+		<body>
+
+
 
 			<header>
 
@@ -40,18 +42,17 @@
 				</div>
 			</div>
 
+		</body>
 
-		</div>
-	</div>
 
-	<script>
-		$("#Film").change(function() {
-			window.location = "{{URL}}index.php?action=viewByFilmId&id=" + $(this).val();
-		});
-		$("#FilmRealisateur").change(function() {
-			window.location = "{{URL}}index.php?action=viewByRealisateurId&idRealisateur=" + $(this).val();
-		});
-		$("#FilmArrondissement").change(function() {
-			window.location = "{{URL}}index.php?action=viewByArrondissementId&idArrondissement=" + $(this).val();
-		});
-	</script>
+		<script>
+			$("#Film").change(function() {
+				window.location = "{{URL}}index.php?action=viewByFilmId&id=" + $(this).val();
+			});
+			$("#FilmRealisateur").change(function() {
+				window.location = "{{URL}}index.php?action=viewByRealisateurId&idRealisateur=" + $(this).val();
+			});
+			$("#FilmArrondissement").change(function() {
+				window.location = "{{URL}}index.php?action=viewByArrondissementId&idArrondissement=" + $(this).val();
+			});
+		</script>
