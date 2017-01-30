@@ -3,59 +3,58 @@
 	<div id="carrebleu_left">
 		<div id="carrebleu_right">
 
-	<header>
-		<!--<div id="carrebleu_left">
+			<header>
+				<!--<div id="carrebleu_left">
 			<div id="carrebleu_right">-->
 				<h1 class="text-center "><img src="assets/img/title.png " alt="La traversée de Paris "></h1>
-			<!--</div>
+				<!--</div>
 		</div>-->
-	</header>
+			</header>
 
-	<!-- bordure pellicule cinéma -->
-	<!-- <img id="img_bordure_left " src="maquette/bordure.svg " alt="bordure" style="float: left">
+			<!-- bordure pellicule cinéma -->
+			<!-- <img id="img_bordure_left " src="maquette/bordure.svg " alt="bordure" style="float: left">
 	<img id="img_bordure_right " src="maquette/bordure.svg " alt="bordure " style="float:right"> -->
 
 
 			<div class="container">
 				<div class="row ">
 					<div id="searchBox" class="col-xs-12">
-
-						<select class="selectpicker show-menu-arrow" data-live-search="true" data-size="10" id="Film">
+						<div class="form-fild">
+							<select class="selectpicker show-menu-arrow" data-live-search="true" data-size="10" id="Film">
 							{{#Film}}
 								<option name="pouet" data-icon="glyphicon-film" value="{{id}}" {{#active}}selected{{/active}}>{{titre}}</option>
 							{{/Film}}
 						</select>
 
-						<select class="selectpicker show-menu-arrow" data-live-search="true" data-size="10" id="FilmRealisateur">
+							<select class="selectpicker show-menu-arrow" data-live-search="true" data-size="10" id="FilmRealisateur">
 							{{#FilmRealisateur}}
 								<option name="pouet" data-icon="glyphicon-film" value="{{id}}" {{#active}}selected{{/active}}>{{realisateur}}</option>
 							{{/FilmRealisateur}}
 						</select>
 
-						<select class="selectpicker show-menu-arrow" data-live-search="true" data-size="10" id="FilmArrondissement">
+							<select class="selectpicker show-menu-arrow" data-live-search="true" data-size="10" id="FilmArrondissement">
 							{{#FilmArrondissement}}
 								<option name="pouet" data-icon="glyphicon-film" value="{{id}}" {{#active}}selected{{/active}}>{{arrondissement}}</option>
 							{{/FilmArrondissement}}
 						</select>
+						</div>
 
 					</div>
 				</div>
 			</div>
 
 
-		</div>
-	</div>
-	
-	<script>
-		$("#Film").change(function(){
-			window.location = "{{URL}}index.php?action=viewByFilmId&id="+$(this).val();
-		});
-		$("#FilmRealisateur").change(function(){
-			window.location = "{{URL}}index.php?action=viewByRealisateurId&idRealisateur="+$(this).val();
-		});
-		$("#FilmArrondissement").change(function(){
-			window.location = "{{URL}}index.php?action=viewByArrondissementId&idArrondissement="+$(this).val();
-		});
-	</script>
+
+			<script>
+				$("#Film").change(function() {
+					window.location = "{{URL}}index.php?action=viewByFilmId&id=" + $(this).val();
+				});
+				$("#FilmRealisateur").change(function() {
+					window.location = "{{URL}}index.php?action=viewByRealisateurId&idRealisateur=" + $(this).val();
+				});
+				$("#FilmArrondissement").change(function() {
+					window.location = "{{URL}}index.php?action=viewByArrondissementId&idArrondissement=" + $(this).val();
+				});
+			</script>
 
 </body>
