@@ -8,18 +8,20 @@ background-position: center top;
 #carrebleu_left{
 padding: 0;
 margin: 0;
-background-image: url("../img/carrebleu.svg");
+background-image: url("../img/bobine.gif");
 background-repeat: repeat-y;
 background-position: left;
 height: 100vh;
+
 }
+
 #carrebleu_right{
 padding: 0;
 margin: 0;
-background-image: url("../img/carrebleu.svg");
+background-image: url("../img/bobine.gif");
 background-repeat: repeat-y;
 background-position: right;
-	height: 100vh;
+height: 100vh;
 }
 
 h1{
