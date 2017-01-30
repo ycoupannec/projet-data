@@ -17,7 +17,7 @@ class film {
          $data['lieux'] = $this->getLieux($id);
          $realisateur = $this->getRealisateur($id);
          $data['realisateur'] = $realisateur["realisateur"];
-         $data['arrondissement'] = $this->getArrondissement($id);
+         $data['arrondissements'] = $this->getArrondissement($id);
          $date['commentaires'] = $this->getCommentaireByFilm($id);
          if (!empty($data['titre'])){
             $data['poster'] = $this->getPoster($data['titre']);   
