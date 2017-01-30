@@ -109,7 +109,7 @@
 		/*FONCTIONS DES BOUTONS DE LA PAGE*/
 
 		$(".selectpicker").change(function(){
-		window.location = "{{URL}}index.php?action=viewByFilmId&id="+$(this).val();
+		window.location = "{{{URL}}}index.php?action=viewByFilmId&id="+$(this).val();
 		});
 
 		/*var idFilm = parseInt($(".selectpicker").val());
@@ -128,17 +128,20 @@
 		window.location = listFilm[i-1].URL;
 		});*/
 
-
+		$('#btnPrecedent').click(function() {
+			$('#selectFilm option:selected').prev().attr('selected', 'selected');
+			var pagePrecedente = $('#selectFilm').val();
+			window.location = "{{{URL}}}"+pagePrecedente;
+		});
 
 		$('#btnSuivant').click(function() {
 			$('#selectFilm option:selected').next().attr('selected', 'selected');
-
-			/*$('#selectFilm').click();*/
-			/*$('#selectFilm option:selected').next().click();*/
-			/*window.location = test;*/
-			/*console.log(test);*/
-			/*alert($('#selectFilm').val());*/
+			var pageSuivante = $('#selectFilm').val();
+			window.location = "{{{URL}}}"+pageSuivante;
 		});
+
+
+
 
 
 
