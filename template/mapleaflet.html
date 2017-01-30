@@ -1,9 +1,11 @@
 <script type="text/javascript">
 
+
 	/*affichage de la map et définition du point d'arrivée sur la carte*/
 	var mymap = L.map('mapid').setView([48.85839, 2.34215], 11);
 
-	/*type de "tiles" pour la map, on peut en changer (skin)*/		L.tileLayer('https://api.mapbox.com/styles/v1/benoitm/ciy5sprke005d2rpb6dxry2ah/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiYmVub2l0bSIsImEiOiJjaXk1c24ycGYwMDJwMzNyamhmaXc2dTNnIn0.065FxCTP4WiqVfnlubCMmA', {
+
+	/*type de "tiles" pour la map, on peut en changer (skin)*/	L.tileLayer('https://api.mapbox.com/styles/v1/benoitm/ciy5sprke005d2rpb6dxry2ah/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiYmVub2l0bSIsImEiOiJjaXk1c24ycGYwMDJwMzNyamhmaXc2dTNnIn0.065FxCTP4WiqVfnlubCMmA', {
 	maxZoom: 18,
 	/*attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
 		'<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
@@ -32,10 +34,7 @@
 
 	for (var i = 0; i < infoFilm.length; i++)
 		{
-
 			addMarker(infoFilm[i].titre, infoFilm[i].coord, infoFilm[i].adresse, infoFilm[i].realisateur, infoFilm[i].date, infoFilm[i].cadre, infoFilm[i].poster, infoFilm[i].overview, infoFilm[i].id_arrondissement);
-
-
 		}
 
 
@@ -57,33 +56,62 @@
 				{
 					document.getElementById("titreFilm").innerHTML = titre;
 					document.getElementById("realisateurFilm").innerHTML = "Réalisateur: "+realisateur;
+
+					document.getElementById("adresseFilm").classList.remove("infoHide");
 					document.getElementById("adresseFilm").innerHTML = "Adresse: "+adresse;
+
+					document.getElementById("dateFilm").classList.remove("infoHide");
 					document.getElementById("dateFilm").innerHTML = "Date de tournage: "+date;
+
+					document.getElementById("cadreFilm").classList.remove("infoHide");
 					document.getElementById("cadreFilm").innerHTML = "Cadre: "+cadre;
-					/*document.getElementById("overviewFilm").innerHTML = "Synopsis: "+overview;
-					document.getElementById("posterFilm").setAttribute("src", poster);*/
+					/*document.getElementById("overviewFilm").innerHTML = "Synopsis: "+overview;*/
+
+					document.getElementById("overviewFilm").classList.add("infoHide");
+					/*document.getElementById("posterFilm").setAttribute("src", poster);*/
+
+					document.getElementById("posterFilm").classList.add("infoHide");
+					document.getElementById("adresseFilm").classList.remove("infoHide");
 					document.getElementById("mzzrFckngBtn").click();
 				});
-
 		}
 
-document.getElementById("btnFicheFilm").onclick = function()
-{
-	document.getElementById("titreFilm").innerHTML = infoFilm[0].titre;
+	if(infoFilm[0].overview!="" && infoFilm[0].poster!="")
+	{
+		document.getElementById("btnFicheFilm").onclick = function()
+		{
+			document.getElementById("titreFilm").innerHTML = infoFilm[0].titre;
 
-	document.getElementById("realisateurFilm").innerHTML = "Réalisateur: "+infoFilm[0].realisateur;
+			document.getElementById("realisateurFilm").innerHTML = "Réalisateur: "+infoFilm[0].realisateur;
 
-	/*document.getElementById("adresseFilm").innerHTML = "Adresse: "+infoFilm[0].adresse;
+			/*document.getElementById("adresseFilm").innerHTML = "Adresse: "+infoFilm[0].adresse;*/
 
-	document.getElementById("dateFilm").innerHTML = "Date de tournage: "+infoFilm[0].date;
+			document.getElementById("adresseFilm").classList.add("infoHide");
 
-	document.getElementById("cadreFilm").innerHTML = "Cadre: "+infoFilm[0].cadre;*/
+			/*document.getElementById("dateFilm").innerHTML = "Date de tournage: "+infoFilm[0].date;*/
 
-	document.getElementById("overviewFilm").innerHTML = "Synopsis: "+infoFilm[0].overview;
+			document.getElementById("dateFilm").classList.add("infoHide");
 
-	document.getElementById("posterFilm").setAttribute("src", infoFilm[0].poster);
+			/*document.getElementById("cadreFilm").innerHTML = "Cadre: "+infoFilm[0].cadre;*/
 
-	document.getElementById("mzzrFckngBtn").click();
+			document.getElementById("cadreFilm").classList.add("infoHide");
 
-}
+			document.getElementById("overviewFilm").classList.remove("infoHide");
+
+			document.getElementById("overviewFilm").innerHTML = "Synopsis: "+infoFilm[0].overview;
+
+			document.getElementById("posterFilm").classList.remove("infoHide");
+
+			document.getElementById("posterFilm").setAttribute("src", infoFilm[0].poster);
+
+			document.getElementById("mzzrFckngBtn").click();
+
+		}
+	}
+	else
+	{
+		document.getElementById("btnFicheFilm").setAttribute("style", "opacity:0;")
+	}
+
+
 </script>
