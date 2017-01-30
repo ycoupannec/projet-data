@@ -1,9 +1,12 @@
 <?php
 class film {
+
 	private $sql;
+
 	function __construct(){
 		$this->sql= new SQLpdo();
 	}
+
     // récupérer un film à partir de son identifiant
     // @param $id integer Code du film
     function getById($id) {
@@ -12,17 +15,15 @@ class film {
         
 		$data = $this->sql->fetch("SELECT * FROM `ltp_film` WHERE id=:id", array(':id' =>$id));
          $data['lieux'] = $this->getLieux($id);
-         $realisateur= $this->getRealisateur($id);
-         $data['realisateur'] =$realisateur["realisateur"];
+         $realisateur = $this->getRealisateur($id);
+         $data['realisateur'] = $realisateur["realisateur"];
          $data['arrondissement'] = $this->getArrondissement($id);
+         $date['commentaires'] = $this->getCommentaireByFilm($id);
          if (!empty($data['titre'])){
             $data['poster'] = $this->getPoster($data['titre']);   
-         
             $data['overview'] = $this->getOverview($data['titre']);
          }
          
-         
-        
         return $data;
     }
 
@@ -32,13 +33,26 @@ class film {
         $lieu = new lieu();
         return $lieu->getByFilmId($id);
     }
+
     function getRealisateur($id) {
         $realisateur = new realisateur();
         return $realisateur->getByFilmId($id);
     }
+
     function getArrondissement($id) {
         $arrondissement = new arrondissement();
         return $arrondissement->getByFilmId($id);
+    }
+
+    function getCommentaireByFilm($id){
+        $commentaires = new commentaire();
+        $lieux=$this->getLieux($id);
+
+        foreach ($lieux as $key => $lieu) {
+            $commentaire[] = $commentaires->getCommentaireByLieu($lieu['id'],'desc');
+        }
+        
+        return $commentaire;
     }
 
     // compter le nb de lieux pour un film
@@ -54,10 +68,12 @@ class film {
     	$data = $this->sql->fetch("SELECT * FROM `ltp_film` WHERE titre=:titre", array(':titre' =>$titre ));
 		return $data;
     }
+
     function allFilm(){
     	$data = $this->sql->fetchAll("SELECT * FROM `ltp_film` ");
 		return $data;
     }
+
     function getOverview($titre){
         $movie = new movieAPI($titre);
         if(!empty($movie)){
@@ -65,6 +81,7 @@ class film {
         }
         return  $movie;
     }
+
     function getPoster($titre){
         $movie = new movieAPI($titre);
         if(!empty($movie)){
@@ -107,32 +124,43 @@ class movieAPI
          
 
     }
+
     function getID(){
-        return $this->movies[0]->getID();
-        // return 11;
+        $data = $this->movies[0]->getID(); 
+        return $data;
+        
     }
+
     function getReviews(){
-        return $this->movie->getReviews();
+        $data = $this->movie->getReviews(); 
+        return $data;
     }
+
     function getGenres(){
-        return $this->movie->getGenres();
+        $data = $this->movie->getGenres();
+        return $data;
     }
+
     function getTrailer(){
-        return $this->movie->getTrailer();
+        $data = $this->movie->getTrailer();
+        return $data;
     }
+
     function getTrailers(){
         
-        $test = $this->movie->getTrailers();
-        return $test;
+        $data = $this->movie->getTrailers();
+        return $data;
 
     }
+
     function getPoster(){
-        $picture ="";
+        $picture = "";
         if(!empty($this->movie)){
             $picture = "http://image.tmdb.org/t/p/original/". $this->movie->getPoster();
         }
         return $picture;
     }
+
     function getTagline(){
         $Tagline = '';
 
@@ -142,12 +170,14 @@ class movieAPI
 
         return $Tagline;
     }
+
     function getOverview(){
         $Overview = "";
 
         if(!empty($this->movie)){
             $Overview = $this->movie->getOverview();
         }
+
         return $Overview;
     }
 }
