@@ -72,18 +72,30 @@ li span{
 	margin: 1.5em;
 }
 
+
+
+
 #btnPrecedent, #btnSuivant, #btnFicheFilm{
-	width: 6em;
-	height: 6em;
 	z-index: 1000;
 	position: relative;
 	display: flex;
+	flex-flow: column;
 	justify-content: center;
+	color: #505F7E;
 }
+
+#btnPrecedent img, #btnSuivant img, #btnFicheFilm img{
+	width: 6em;
+	height: 6em;
+}
+
 
 #btnPrecedent img{
     -ms-transform: rotate(180deg); /* IE 9 */
     -webkit-transform: rotate(180deg); /* Chrome, Safari, Opera */
     transform: rotate(180deg);
 }
+
+.infoHide{
+	display: none;
 }
