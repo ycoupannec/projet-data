@@ -3,11 +3,11 @@
 	<div id="carrebleu_left">
 		<div id="carrebleu_right">
 
-	<header>
+			<header>
 
 				<h1 class="text-center "><img src="assets/img/title.png " alt="La traversée de Paris "></h1>
 
-	</header>
+			</header>
 
 
 
@@ -43,17 +43,15 @@
 
 		</div>
 	</div>
-	
+
 	<script>
-		$("#Film").change(function(){
-			window.location = "{{URL}}index.php?action=viewByFilmId&id="+$(this).val();
+		$("#Film").change(function() {
+			window.location = "{{URL}}index.php?action=viewByFilmId&id=" + $(this).val();
 		});
-		$("#FilmRealisateur").change(function(){
-			window.location = "{{URL}}index.php?action=viewByRealisateurId&idRealisateur="+$(this).val();
+		$("#FilmRealisateur").change(function() {
+			window.location = "{{URL}}index.php?action=viewByRealisateurId&idRealisateur=" + $(this).val();
 		});
-		$("#FilmArrondissement").change(function(){
-			window.location = "{{URL}}index.php?action=viewByArrondissementId&idArrondissement="+$(this).val();
+		$("#FilmArrondissement").change(function() {
+			window.location = "{{URL}}index.php?action=viewByArrondissementId&idArrondissement=" + $(this).val();
 		});
 	</script>
-
-</body>

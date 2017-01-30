@@ -12,10 +12,12 @@ background-image: url("../img/carrebleu.svg");
 background-repeat: repeat-y;
 background-position: left;
 height: 100vh;
+z-index: 2;
 }
 #carrebleu_right{
 padding: 0;
 margin: 0;
+z-index: 2;
 background-image: url("../img/carrebleu.svg");
 background-repeat: repeat-y;
 background-position: right;
@@ -46,4 +48,44 @@ margin: 0;
 
 li span{
 	color: #ffffff;
+}
+.form-fild {
+		position: relative;
+		display: block;
+		width: 90%;
+		height: 60px;
+		margin: 10px auto;
+}
+
+.form-fild select {
+		position: relative;
+		z-index: 99;
+		border: none;
+		border-bottom: 1px solid #e0e0e0;
+		display: block;
+		outline: none;
+		font-family: 'Open Sans', sans-serif;
+		font-size: 16px;
+		color: #444;
+		background: transparent;
+		z-index: 1;
+}
+.selectpicker {
+		background: transparent;
+		border: none;
+		z-index: 0;
+		/*effacer les effets bootstrap*/
+}
+/* FOOTER */
+#copyright{
+	font-family: none;
+	color: #fff;
+	float: right;
+
+	margin-bottom: 10px;
+	margin-right: 25px;
+}
+#link{
+	text-align: center;
+	/*border: 1px solid white;*/
 }
