@@ -5,6 +5,7 @@ body {
 	height: 100%;
 }
 
+
 #mapid{
 	height: 85vh;
 	width:100vw;
@@ -13,11 +14,13 @@ body {
 	align-items: flex-end;
 }
 
+
 #by{
 	color: #FFFFFF;
 	font-size: 1.1em;
 	padding-left: 0.8em;
 }
+
 
 #zoneRecherche{
 	position: absolute;
@@ -32,6 +35,7 @@ body {
 	justify-content: center;
 }
 
+
 .btn-default{
 	border-radius: 0;
 	background: none;
@@ -41,25 +45,31 @@ body {
 	border-bottom: 1px solid #FFFFFF;
 }
 
+
 .btn-default.active.focus, .btn-default.active:focus, .btn-default.active:hover, .btn-default:active.focus, .btn-default:active:focus, .btn-default:active:hover, .open>.dropdown-toggle.btn-default.focus, .open>.dropdown-toggle.btn-default:focus, .open>.dropdown-toggle.btn-default:hover{
 	background: none;
 	border: none;
 	color: #FFFFFF;
 	font-size: 1.1em;
 	border-bottom: 1px solid #FFFFFF;
+	box-shadow: none;
 }
+
 
 .dropdown-menu{
 	background-color: #282F3E;
-	top: 45%;
+	top: initial;
+	bottom: 100%;
 	max-width: 100%;
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
 
+
 li span{
 	color: #ffffff;
 }
+
 
 .modal-content{
     color: #FFFFFF;
@@ -67,9 +77,11 @@ li span{
     border-radius: 2px;
 }
 
+
 .modal-header, .modal-footer{
     border: none;
 }
+
 
 .modal-footer button{
     background-color: #1E232F;
@@ -82,10 +94,12 @@ li span{
 	display: none;
 }
 
+
 #posterFilm{
 	width: 100%;
 	padding-bottom: 2vh;
 }
+
 
 #zoneBtnSuivantPrecedent{
 	width: 100vw;
@@ -104,6 +118,7 @@ li span{
 	color: #505F7E;
 }
 
+
 #btnPrecedent img, #btnSuivant img, #btnFicheFilm img{
 	width: 6em;
 	height: 6em;
@@ -111,10 +126,11 @@ li span{
 
 
 #btnPrecedent img{
-    -ms-transform: rotate(180deg); /* IE 9 */
-    -webkit-transform: rotate(180deg); /* Chrome, Safari, Opera */
+    -ms-transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
     transform: rotate(180deg);
 }
+
 
 .infoHide{
 	display: none;
