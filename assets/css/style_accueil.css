@@ -4,14 +4,8 @@ background-image:  url("../img/wallpaper-logo.svg");
 background-repeat: no-repeat;
 background-position: center top;
 }
-#copyright{
-	font-family: none;
-	color: #fff;
-	float: right;
-	margin-bottom: 0;
-	margin-right: 40px;
-	z-index: 1;
-}
+
+
 
 #carrebleu_left{
 padding: 0;
@@ -92,3 +86,23 @@ p{
 li span{
 	color: #ffffff;
 }
+
+footer{
+	display: flex;
+	flex-flow: column;
+	align-items: center;
+	position: absolute;
+	bottom: 0;
+	width: 100vw;
+}
+
+#link a img{
+	margin: 0em 0.5em 0.5em 0.5em;
+}
+
+footer p{
+	margin: 0;
+	padding-bottom: 0.5em;
+	font-size: 0.8em;
+}
+
