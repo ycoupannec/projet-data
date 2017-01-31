@@ -135,7 +135,7 @@ if (!request('action')){
     echo $m->render('map.inc', 
         array(
             'Film' => $listFilm,
-            'BY' => 'Arrondissement : '.$nb_arrondissement[0]['arrondissement'],
+            'BY' => '<span class="glyphicon glyphicon-map-marker"></span> '.$nb_arrondissement[0]['arrondissement'],
             'URL' => URL_SITE."index.php?action=viewByArrondissementId&idArrondissement=".$idArrondissement."&idFilm=",
             'URL_HOME' => URL_SITE
             ));
@@ -149,18 +149,16 @@ if (!request('action')){
     /*-----------------------------------------------------------------------
     -----------------------------------------------------------------------*/
     $idRealisateur = request('idRealisateur');
+    $realisateurs = new realisateur();
+    $filmRealisateur = $realisateurs->getFilmByIdRealisateur($idRealisateur);
 
     if (request('idFilm') == false){
 
-        $realisateurs = new realisateur();
-        $filmRealisateur = $realisateurs->getFilmByIdRealisateur($idRealisateur);
         $idFilm = $filmRealisateur[0]['id'];
         
     }else{
 
         $idFilm = request('idFilm');
-        $realisateurs = new realisateur();
-        $filmRealisateur = $realisateurs->getFilmByIdRealisateur($idRealisateur);
         
     }
     
@@ -188,7 +186,7 @@ if (!request('action')){
     echo $m->render('map.inc', 
         array(
             'Film' => $listFilm,
-            'BY' => 'Réalisateur : '.$allFilm['realisateur'],
+            'BY' => '<span class="glyphicon glyphicon-user"></span> '.$allFilm['realisateur'],
             'URL' => URL_SITE."index.php?action=viewByRealisateurId&idRealisateur=".$idRealisateur."&idFilm=",
             'URL_HOME' => URL_SITE
             ));
