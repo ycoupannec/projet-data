@@ -55,47 +55,7 @@ margin: 0;
 li span{
 	color: #ffffff;
 }
-/*PAS DE BOOTSTRAP ICI*/
 
-.bootstrap-select .dropdown-toggle:focus {
-    outline: none;
-    outline: none;
-    outline-offset: 0px;
-}
-btn-default{
-	background-color: none;
-	border-color: none;
-	color: none;
-
-
-}
-.btn{
-	border-radius: none;
-	border: none;
-}
-
-/*style des search box*/
-.form-fild {
-		position: relative;
-		display: block;
-		width: 90%;
-		height: 60px;
-		margin: 10px auto;
-}
-
-.form-fild select {
-		position: relative;
-		z-index: 99;
-		border: none;
-		border-bottom: 1px solid #e0e0e0;
-		display: block;
-		outline: none;
-		font-family: 'Open Sans', sans-serif;
-		font-size: 16px;
-		color: #444;
-		background: transparent;
-		z-index: 1;
-}
 /* FOOTER */
 #link{
 	width: 20%;
