@@ -1,0 +1,71 @@
+body {
+background-color: #505F7E;
+background-image:  url("../img/wallpaper-logo.svg");
+background-repeat: no-repeat;
+background-position: center top;
+}
+#copyright{
+	font-family: none;
+	color: #fff;
+	float: right;
+	margin-bottom: 0;
+	margin-right: 40px;
+	z-index: 1;
+}
+
+#carrebleu_left{
+padding: 0;
+margin: 0;
+background-image: url("../img/carrebleu.svg");
+background-repeat: repeat-y;
+background-position: left;
+height: 100vh;
+}
+#carrebleu_right{
+padding: 0;
+margin: 0;
+background-image: url("../img/carrebleu.svg");
+background-repeat: repeat-y;
+background-position: right;
+	height: 100vh;
+}
+
+h1{
+padding: 0;
+margin: 0;
+}
+
+#route{
+  /*padding: 70px 0;*/
+  text-align: center;
+}
+
+#searchBox{
+  padding-top: 30vh;
+  text-align: center;
+    z-index: 1;
+}
+
+.dropdown-menu{
+	background-color: #282F3E;
+	left: -20vw;
+	width: 98vw;
+}
+
+li span{
+	color: #ffffff;
+}
+
+/* FOOTER */
+#link{
+	width: 20%;
+	margin-left: auto;
+	margin-right: auto;
+}
+footer{
+position: absolute;
+bottom: 0;
+width: 100%;
+ /* Set the fixed height of the footer here */
+
+}
