@@ -15,24 +15,27 @@
 			<div class="container">
 				<div class="row ">
 					<div id="searchBox" class="col-xs-12">
-
-						<select class="selectpicker show-menu-arrow" data-live-search="true" data-size="10" id="Film">
+						<p>Sélectionnez votre parcours :</p>
+						<select class="selectpicker show-menu-arrow" data-dropup-auto="false" data-live-search="true" data-size="5" id="Film">
+								<option data-icon="glyphicon-film" value="" disabled selected hidden>par film</option>
 							{{#Film}}
-								<option name="pouet" data-icon="glyphicon-film" value="{{id}}" {{#active}}selected{{/active}}>{{titre}}</option>
+								<option data-icon="glyphicon-film" value="{{id}}" {{#active}}selected{{/active}}>{{titre}}</option>
 							{{/Film}}
 						</select>
 
 
-						<select class="selectpicker show-menu-arrow" data-live-search="true" data-size="10" id="FilmRealisateur">
+						<select class="selectpicker show-menu-arrow" data-dropup-auto="false" data-live-search="true" data-size="5" id="FilmRealisateur">
+								<option data-icon="glyphicon-user" value="" disabled selected hidden>par réalisateur</option>
 							{{#FilmRealisateur}}
-								<option name="pouet" data-icon="glyphicon-film" value="{{id}}" {{#active}}selected{{/active}}>{{realisateur}}</option>
+								<option data-icon="glyphicon-user" value="{{id}}" {{#active}}selected{{/active}}>{{realisateur}}</option>
 							{{/FilmRealisateur}}
 						</select>
 
 
-						<select class="selectpicker show-menu-arrow" data-live-search="true" data-size="10" id="FilmArrondissement">
+						<select class="selectpicker show-menu-arrow" data-dropup-auto="false" data-live-search="true" data-size="5" id="FilmArrondissement">
+								<option data-icon="glyphicon-map-marker" value="" disabled selected hidden>par arrondissement</option>
 							{{#FilmArrondissement}}
-								<option name="pouet" data-icon="glyphicon-film" value="{{id}}" {{#active}}selected{{/active}}>{{arrondissement}}</option>
+								<option data-icon="glyphicon-map-marker" value="{{id}}" {{#active}}selected{{/active}}>{{arrondissement}}</option>
 							{{/FilmArrondissement}}
 						</select>
 
