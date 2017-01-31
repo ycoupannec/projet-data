@@ -28,7 +28,7 @@ class arrondissement{
 
 	function findArrondissement($nb=0){
 		$data = $this->sql->fetchAll("SELECT `ltp_arrondissement`.* FROM `ltp_arrondissement`");
-		
+		$data = $this->getUrl($data);
 		return $data;
 	}
 
@@ -40,5 +40,14 @@ class arrondissement{
 	function getFilmByArrondissement($id){
 		$data = $this->sql->fetchAll("SELECT DISTINCT `ltp_film`.* FROM `ltp_film`, `ltp_arrondissement`, `ltp_lieu`  WHERE  `ltp_lieu`.id_arrondissement=`ltp_arrondissement`.id and `ltp_lieu`.id_film=`ltp_film`.id and `ltp_arrondissement`.id=:id", array(':id'=>$id));
 		return $data;
+	}
+
+	function getUrl($data){
+		for ($i = 0; $i < count($data); $i++) { 
+         # code...
+	        // à ajouter à la class film : get url
+	        $data[$i]['URL'] = URL_SITE.'index.php?action=viewByArrondissementId&idArrondissement='.$data[$i]['id'];
+	    }
+	    return $data;
 	}
 }

@@ -22,29 +22,17 @@ $m = new Mustache_Engine(array(
 ));
 
 if (!request('action')){
+     /*-----------------------------------------------------------------------
+    -----------------------------------------------------------------------*/
+    /*                  Affiche la home page.                           */
+    /*-----------------------------------------------------------------------
+    -----------------------------------------------------------------------*/
     $film = new film();
     $allFilm = $film->allFilm();
     $realisateur = new realisateur();
     $allRealisateur = $realisateur->findRealisateur();
     $arrondissement = new arrondissement();
     $allArrondissement = $arrondissement->findArrondissement();
-
-
-    for ($i = 0; $i < count($allFilm); $i++) { 
-         # code...
-        // à ajouter à la class film : get url
-        $allFilm[$i]['URL'] = URL_SITE.'index.php?action=viewByFilmId&id='.$allFilm[$i]['id'];
-    }
-    for ($i = 0; $i < count($allRealisateur); $i++) { 
-         # code...
-        // à ajouter à la class film : get url
-        $allRealisateur[$i]['URL'] = URL_SITE.'index.php?action=viewByRealisateurId&idRealisateur='.$allRealisateur[$i]['id'];
-    }
-    for ($i = 0; $i < count($allArrondissement); $i++) { 
-         # code...
-        // à ajouter à la class film : get url
-        $allArrondissement[$i]['URL'] = URL_SITE.'index.php?action=viewByArrondissementId&idArrondissement='.$allArrondissement[$i]['id'];
-    }
     
 	$cssAccueil = "<link rel='stylesheet' href='assets/css/style_accueil.css' />";
 
@@ -62,14 +50,19 @@ if (!request('action')){
 
 }else if(request('action') == "viewByFilmId"){
 
+     /*-----------------------------------------------------------------------
+    -----------------------------------------------------------------------*/
+    /*                  Affiche tout les films.                         */
+    /*-----------------------------------------------------------------------
+    -----------------------------------------------------------------------*/
+
     $id = request('id');
     $film = new film();
     $allFilm = $film->getById($id);
     $listFilm = $film->allFilm();
 
     for ($i = 0; $i < count($listFilm); $i++) {
-         # code...
-        $listFilm[$i]['URL'] = URL_SITE.'index.php?action=viewByFilmId&id='.$listFilm[$i]['id'];
+        
         $listFilm[$i]['active'] = false;
 
         if($listFilm[$i]['id'] == $id){
@@ -87,12 +80,19 @@ if (!request('action')){
     echo $m->render('map.inc', 
         array(
             'Film' => $listFilm,
-            'URL' => URL_SITE."index.php?action=viewByFilmId&id="
+            'URL' => URL_SITE."index.php?action=viewByFilmId&id=",
+            'URL_HOME' => URL_SITE
             ));
 
     echo $m->render('mapleaflet',$allFilm);
 
 }else if(request('action')=='viewByArrondissementId'){
+
+     /*-----------------------------------------------------------------------
+    -----------------------------------------------------------------------*/
+    /*                  Filtre film avec l'id arrondissement.           */
+    /*-----------------------------------------------------------------------
+    -----------------------------------------------------------------------*/
 
     $idArrondissement = request('idArrondissement');
     
@@ -115,8 +115,7 @@ if (!request('action')){
     $listFilm = $filmArrondissement;
     
     for ($i = 0; $i < count($listFilm); $i++) {
-         # code...
-        $listFilm[$i]['URL'] = URL_SITE.'index.php?action=viewByArrondissementId&idFilm='.$listFilm[$i]['id'].'&idArrondissement='.$idArrondissement;
+        
         $listFilm[$i]['active'] = false;
 
         if($listFilm[$i]['id'] == $idFilm){
@@ -135,14 +134,18 @@ if (!request('action')){
     echo $m->render('map.inc', 
         array(
             'Film' => $listFilm,
-            'URL' => URL_SITE."index.php?action=viewByArrondissementId&idArrondissement=".$idArrondissement."&idFilm="
+            'URL' => URL_SITE."index.php?action=viewByArrondissementId&idArrondissement=".$idArrondissement."&idFilm=",
+            'URL_HOME' => URL_SITE
             ));
-   /* print_r($allFilm);
-    exit;*/
+
     echo $m->render('mapleaflet',$allFilm);
 
 }else if(request('action') == 'viewByRealisateurId'){
-    
+    /*-----------------------------------------------------------------------
+    -----------------------------------------------------------------------*/
+    /*                  Filtre film avec l'id realisateur.              */
+    /*-----------------------------------------------------------------------
+    -----------------------------------------------------------------------*/
     $idRealisateur = request('idRealisateur');
 
     if (request('idFilm') == false){
@@ -164,8 +167,7 @@ if (!request('action')){
     $listFilm = $filmRealisateur;
 
     for ($i = 0; $i < count($listFilm); $i++) {
-         # code...
-        $listFilm[$i]['URL'] = URL_SITE.'index.php?action=viewByRealisateurId&idFilm='.$listFilm[$i]['id'].'&idRealisateur='.$idRealisateur;
+       
         $listFilm[$i]['active'] = false;
 
         if($listFilm[$i]['id'] == $idFilm){
@@ -184,7 +186,8 @@ if (!request('action')){
     echo $m->render('map.inc', 
         array(
             'Film' => $listFilm,
-            'URL' => URL_SITE."index.php?action=viewByRealisateurId&idRealisateur=".$idRealisateur."&idFilm="
+            'URL' => URL_SITE."index.php?action=viewByRealisateurId&idRealisateur=".$idRealisateur."&idFilm=",
+            'URL_HOME' => URL_SITE
             ));
 
     echo $m->render('mapleaflet',$allFilm);
