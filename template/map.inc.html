@@ -78,7 +78,7 @@
 
 		<div class="col-xs-9">
 			<div id="by">{{BY}}</div>
-			<select id="selectFilm" onchange="this.form.submit()" class="selectpicker show-menu-arrow" data-live-search="true" data-size="5">
+			<select id="selectFilm" onchange="this.form.submit()" class="selectpicker show-menu-arrow" data-dropup-auto="true" data-live-search="true" data-size="5">
 				{{#Film}}
 				<option value="{{id}}" {{#active}}selected{{/active}}>{{titre}}</option>
 				{{/Film}}
