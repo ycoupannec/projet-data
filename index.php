@@ -111,6 +111,7 @@ if (!request('action')){
     
     $film = new film();
     $allFilm = $film->getById($idFilm);
+    $allFilm["idArrondissement"] = $idArrondissement;
     $listFilm = $filmArrondissement;
     
     for ($i = 0; $i < count($listFilm); $i++) {
@@ -136,7 +137,8 @@ if (!request('action')){
             'Film' => $listFilm,
             'URL' => URL_SITE."index.php?action=viewByArrondissementId&idArrondissement=".$idArrondissement."&idFilm="
             ));
-
+   /* print_r($allFilm);
+    exit;*/
     echo $m->render('mapleaflet',$allFilm);
 
 }else if(request('action') == 'viewByRealisateurId'){
