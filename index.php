@@ -80,7 +80,7 @@ if (!request('action')){
     echo $m->render('map.inc', 
         array(
             'Film' => $listFilm,
-            'BY' => 'Film',
+            /*'BY' => '',*/
             'URL' => URL_SITE."index.php?action=viewByFilmId&id=",
             'URL_HOME' => URL_SITE
             ));
@@ -96,19 +96,19 @@ if (!request('action')){
     -----------------------------------------------------------------------*/
 
     $idArrondissement = request('idArrondissement');
-    
+    $arrondissements = new arrondissement();
+        $filmArrondissement = $arrondissements->getFilmByArrondissement($idArrondissement);
+
     if (request('idFilm') == false){
         
-        $arrondissements = new arrondissement();
-        $filmArrondissement = $arrondissements->getFilmByArrondissement($idArrondissement);
         $idFilm = $filmArrondissement[0]['id'];
         
     }else{
 
-        $arrondissements = new arrondissement();
-        $filmArrondissement = $arrondissements->getFilmByArrondissement($idArrondissement);
         $idFilm = request('idFilm');
     }
+
+    $nb_arrondissement = $arrondissements->getArrondissement($idArrondissement);
     
     $film = new film();
     $allFilm = $film->getById($idFilm);
@@ -135,11 +135,11 @@ if (!request('action')){
     echo $m->render('map.inc', 
         array(
             'Film' => $listFilm,
-            'BY' => 'Arrondissement',
+            'BY' => 'Arrondissement : '.$nb_arrondissement[0]['arrondissement'],
             'URL' => URL_SITE."index.php?action=viewByArrondissementId&idArrondissement=".$idArrondissement."&idFilm=",
             'URL_HOME' => URL_SITE
             ));
-
+    
     echo $m->render('mapleaflet',$allFilm);
 
 }else if(request('action') == 'viewByRealisateurId'){
@@ -184,11 +184,11 @@ if (!request('action')){
         array(
             'css' => $cssMap
             ));
-
+    
     echo $m->render('map.inc', 
         array(
             'Film' => $listFilm,
-            'BY' => 'Réalisateur',
+            'BY' => 'Réalisateur : '.$allFilm['realisateur'],
             'URL' => URL_SITE."index.php?action=viewByRealisateurId&idRealisateur=".$idRealisateur."&idFilm=",
             'URL_HOME' => URL_SITE
             ));
