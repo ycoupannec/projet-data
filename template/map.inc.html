@@ -70,12 +70,14 @@
 	<footer id="zoneRecherche" class="container">
 
 		<div id="btnHome" class="col-xs-3">
-			<img src="assets/img/minilogo.svg"/>
+			<a href="{{{URL_HOME}}}">
+				<img src="assets/img/minilogo.svg"/>
+			</a>
 		</div>
 
 
 		<div class="col-xs-9">
-
+			<div id="by">{{{BY}}}</div>
 			<select id="selectFilm" onchange="this.form.submit()" class="selectpicker show-menu-arrow" data-live-search="true" data-size="5">
 				{{#Film}}
 				<option value="{{id}}" {{#active}}selected{{/active}}>{{titre}}</option>

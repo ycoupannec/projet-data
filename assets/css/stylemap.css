@@ -13,6 +13,12 @@ body {
 	align-items: flex-end;
 }
 
+#by{
+	color: #FFFFFF;
+	font-size: 1.1em;
+	padding-left: 0.8em;
+}
+
 #zoneRecherche{
 	position: absolute;
 	height: 15vh;
@@ -26,10 +32,29 @@ body {
 	justify-content: center;
 }
 
+.btn-default{
+	border-radius: 0;
+	background: none;
+	border: none;
+	color: #FFFFFF;
+	font-size: 1.1em;
+	border-bottom: 1px solid #FFFFFF;
+}
+
+.btn-default.active.focus, .btn-default.active:focus, .btn-default.active:hover, .btn-default:active.focus, .btn-default:active:focus, .btn-default:active:hover, .open>.dropdown-toggle.btn-default.focus, .open>.dropdown-toggle.btn-default:focus, .open>.dropdown-toggle.btn-default:hover{
+	background: none;
+	border: none;
+	color: #FFFFFF;
+	font-size: 1.1em;
+	border-bottom: 1px solid #FFFFFF;
+}
+
 .dropdown-menu{
 	background-color: #282F3E;
-	left: -28vw;
-	width: 98vw;
+	top: 45%;
+	max-width: 100%;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 li span{
@@ -52,9 +77,6 @@ li span{
     border-radius: 2px;
 }
 
-.bgcolor{
-	background-color: red;
-}
 
 #mzzrFckngBtn{
 	display: none;
@@ -71,8 +93,6 @@ li span{
 	justify-content: space-between;
 	margin: 1.5em;
 }
-
-
 
 
 #btnPrecedent, #btnSuivant, #btnFicheFilm{
@@ -99,3 +119,5 @@ li span{
 .infoHide{
 	display: none;
 }
+
+
