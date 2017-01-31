@@ -5,6 +5,8 @@ class lieu{
 		$this->sql = new SQLpdo();
 	}
 
+    // renvoie les informations du lieu à partir de son id
+    // $id correspond à l'id du lieu
 	function getById($id) {
 
         // récupèreration dans la base de données = on obtient un Array
@@ -15,6 +17,8 @@ class lieu{
 
         return $data;
     }
+
+    // renvoie le nombre de lieu total
     function countLieux($id){
     	$data = $this->sql->fetch("SELECT COUNT(id) FROM `ltp_lieu` WHERE `id_film`=:id_film AND `geo_coordinates`<>','", 
             array(
@@ -23,6 +27,9 @@ class lieu{
 
         return $data;
     }
+
+    // renvoie les informations du lieu à partir de l'id du realisateur
+    // $id correspond à l'id du realisateur
     function getByRealisateurId($id){
     	$data = $this->sql->fetchAll("SELECT * FROM `ltp_lieu` WHERE `id_realisateur`=:id_realisateur AND `geo_coordinates`<>','", 
             array(
@@ -31,6 +38,9 @@ class lieu{
 
         return $data;
     }
+
+    // renvoie les informations du lieu à partir de l'id du film
+    // $id correspond à l'id du film
     function getByFilmId($id){
     	$data = $this->sql->fetchAll("SELECT * FROM `ltp_lieu` WHERE `id_film`=:id_film AND `geo_coordinates`<>','", 
             array(
@@ -39,6 +49,10 @@ class lieu{
 
         return $data;
     }
+
+    // renvoie les informations de tout les lieux
+    // $nb correspond à la limit d'affichage exemple les 5 premiers
+    // $orderBy correspond à l'ordre d'affichage : croissant, décroissant
     function findLieu($nb=null, $orderBy=null){
         $rqt = "SELECT * FROM `ltp_lieu` WHERE `geo_coordinates`<>',' ";
     	if ($orderBy!=null){
@@ -48,11 +62,12 @@ class lieu{
             $rqt .= " LIMIT 0,".$nb." ";
         }
 
-        
-
         $data = $this->sql->fetchAll($rqt);
 		return $data;
     }
+
+     // renvoie les informations de l'arrondissement à partir de l'id de l'arrondissement
+    // $id correspond à l'id de l'arrondissement.
     function getArrondissement($id){
 		$arrondissement = new arrondissement();
 		$data = $arrondissement->getArrondissement($id);

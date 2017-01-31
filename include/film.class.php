@@ -35,16 +35,22 @@ class film {
         return $lieu->getByFilmId($id);
     }
 
+    // récupèrer les realisateurs d'un film
+    // @param $id integer Code du film
     function getRealisateur($id) {
         $realisateur = new realisateur();
         return $realisateur->getByFilmId($id);
     }
 
+    // récupèrer les arrondissements d'un film
+    // @param $id integer Code du film
     function getArrondissement($id) {
         $arrondissement = new arrondissement();
         return $arrondissement->getByFilmId($id);
     }
 
+    // récupèrer les Commentaires d'un film
+    // @param $id integer Code du film
     function getCommentaireByFilm($id){
         $commentaires = new commentaire();
         $lieux=$this->getLieux($id);
@@ -56,6 +62,8 @@ class film {
         return $commentaire;
     }
 
+    // récupèrer les url pour chaque film
+    // @param $data Tableau de film
     function getUrl($data){
         for ($i = 0; $i < count($data); $i++) { 
          # code...
@@ -79,12 +87,15 @@ class film {
 		return $data;
     }
 
+    // récupèrer tous les films
     function allFilm(){
     	$data = $this->sql->fetchAll("SELECT * FROM `ltp_film` ");
         $data = $this->getUrl($data);
 		return $data;
     }
 
+    // récupèrer les synopsis d'un film
+    // @param $titre est le titre du film
     function getOverview($titre){
         $movie = new movieAPI($titre);
         if(!empty($movie)){
@@ -93,6 +104,8 @@ class film {
         return  $movie;
     }
 
+     // récupèrer les affiches d'un film
+    // @param $titre est le titre du film
     function getPoster($titre){
         $movie = new movieAPI($titre);
         if(!empty($movie)){
@@ -105,7 +118,7 @@ class film {
 
 
 /**
-* 
+* class pour l'api de TMDB qui cherche plus d'information sur les films
 */
 class movieAPI
 {
@@ -131,11 +144,10 @@ class movieAPI
             file_put_contents('cache/'.$keyCache.'.txt',serialize($this->movie));
         }
 
-        
-         
 
     }
 
+    // retourne l'ID du film de TMDB
     function getID(){
         $data = $this->movies[0]->getID(); 
         return $data;
