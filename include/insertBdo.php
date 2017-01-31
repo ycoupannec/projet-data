@@ -48,7 +48,7 @@ function allInfo(){
 			majInfo("UPDATE `TABLE 34` SET `id_titre_film` = :id_titre_film WHERE `TABLE 34`.`id` = :id",array(':id' => $value["id"], ":id_titre_film"=>$id_titre_film['id']));
 		}
 		
-		echo "</br>";
+		/*echo "</br>";
 		$date_fin_evenement = $value["date_fin_evenement"];
 		$date_fin_evenement = date("Y-m-d", strtotime($date_fin_evenement));
 		$date_debut_evenement = $value["date_debut_evenement"];
@@ -90,7 +90,7 @@ function allInfo(){
 			":id_film"=>$id_titre_film['id'] ),"insert"));
 
 
-		
+		*/
 
 
 	}
@@ -110,7 +110,7 @@ function majInfo($requette,$id){
 
 function returnDataGeo(){
 	$sql = new SQLpdo();
-	$tabData = $sql->fetchAll("SELECT * FROM `ltp_lieu` WHERE `geo_coordinates`='' " );
+	$tabData = $sql->fetchAll("SELECT * FROM `ltp_lieu` WHERE `geo_coordinates`=',' " );
 	return $tabData;
 
 }
@@ -150,11 +150,26 @@ function majCoordonne(){
 
     for ($i=0; $i <count($donne) ; $i++) { 
         # code...
+
+        /*print_r($adresse);*/
         if ($donne[$i]['id']!=1602 and $donne[$i]['id']!=7393 and $donne[$i]['id']!=7481 and $donne[$i]['id']!=7836 and $donne[$i]['id']!=7932){
-	        $champ = $donne[$i]['adresse_complete'];
-	        $info = get_coords($champ);
+	        $champ = $donne[$i]['adresse'];
+	        print_r($donne[$i]['id']);
+	        echo "</br>";
+	        print_r(after (' ',$champ));
+        	echo "</br>";
+	        $info = get_coords(after (' ',$champ));
+	        print_r($info['lon']);
+	        echo "</br>";
 	        $adresse = $info['lat'].", ".$info['lon'];
 	        addCoordonne($donne[$i]['id'],$adresse);
         }
+        
     }
 }
+
+function after ($this, $inthat)
+    {
+        if (!is_bool(strpos($inthat, $this)))
+        return substr($inthat, strpos($inthat,$this)+strlen($this));
+    };
