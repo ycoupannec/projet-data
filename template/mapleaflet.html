@@ -1,3 +1,4 @@
+<input id="idArrondissement" value="{{idArrondissement}}" style="display: none;">
 <script type="text/javascript">
 
 
@@ -17,17 +18,17 @@
 	var infoFilm =
 		[
 			{{#lieux}}
-			{
-				titre: "{{titre}}",
-				realisateur: "{{realisateur}}",
-				date: "{{date_debut_evenement}}",
-				adresse:"{{adresse_complete}}",
-				coord: [{{geo_coordinates}}],
-				cadre: "{{cadre}}",
-				poster: "{{poster}}",
-				overview:"{{overview}}",
-				id_arrondissement: "{{id_arrondissement}}"
-			},
+				{
+					titre: "{{titre}}",
+					realisateur: "{{realisateur}}",
+					date: "{{date_debut_evenement}}",
+					adresse:"{{adresse_complete}}",
+					coord: [{{geo_coordinates}}],
+					cadre: "{{cadre}}",
+					poster: "{{poster}}",
+					overview:"{{overview}}",
+					id_arrondissement: "{{id_arrondissement}}"
+				},
 			{{/lieux}}
 		];
 
@@ -40,19 +41,29 @@
 
 	function addMarker(titre,coord,adresse,realisateur,date, cadre, poster, overview, id_arrondissement)
 		{
-				/*intégration du skin du marker*/
-				var greenIcon = L.icon({
-				iconUrl: 'assets/img/marker.png',
-				shadowUrl: 'assets/img/markershadow.png',
+			/*intégration du skin du marker*/
+			var allIcon = L.Icon.extend({
+				options:{
+					//iconUrl: 'assets/img/marker.png',
+					shadowUrl: 'assets/img/markershadow.png',
 
-				iconSize:     [35, 60],
-				shadowSize:   [50, 40],
-				iconAnchor:   [22, 55],
-				shadowAnchor: [8, 32],
+					iconSize:     [35, 60],
+					shadowSize:   [50, 40],
+					iconAnchor:   [22, 55],
+					shadowAnchor: [8, 32],
+				}
 			});
-
+			/*var inIcon = new allIcon({iconUrl:'assets/img/marker.png'});
+			 	outIcon = new allIcon({iconUrl:'assets/img/logofavicon.png'});*/
+			 	
+			 	nb_arrondissement=$('#idArrondissement').val();
+			 	if (id_arrondissement!=nb_arrondissement && nb_arrondissement != ""){
+			 		var inIcon = new allIcon({iconUrl:'assets/img/marker-opacity.png'});
+			 	}else{
+			 		var inIcon = new allIcon({iconUrl:'assets/img/marker.png'});
+			 	}
 			/*parametres du marker et insertion de ces parametres dans la modal bootstrap*/
-			var marker = L.marker(coord, {icon: greenIcon}).addTo(mymap).on('click', function(e)
+			var marker = L.marker(coord, {icon: inIcon}).addTo(mymap).on('click', function(e)
 				{
 					document.getElementById("titreFilm").innerHTML = titre;
 
@@ -77,7 +88,7 @@
 				});
 		}
 
-	if(infoFilm[0].overview!="" && infoFilm[0].poster!="")
+	if(infoFilm[0].overview!="" || infoFilm[0].poster!="")
 	{
 		document.getElementById("btnFicheFilm").onclick = function()
 		{

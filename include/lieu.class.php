@@ -8,7 +8,7 @@ class lieu{
 	function getById($id) {
 
         // récupèreration dans la base de données = on obtient un Array
-        $data = $this->sql->fetch("SELECT * FROM `ltp_lieu` WHERE id=:id", 
+        $data = $this->sql->fetch("SELECT * FROM `ltp_lieu` WHERE id=:id AND `geo_coordinates`<>',' ", 
             array( 
                 ':id' => $id 
                 ));
@@ -16,7 +16,7 @@ class lieu{
         return $data;
     }
     function countLieux($id){
-    	$data = $this->sql->fetch("SELECT COUNT(id) FROM `ltp_lieu` WHERE `id_film`=:id_film", 
+    	$data = $this->sql->fetch("SELECT COUNT(id) FROM `ltp_lieu` WHERE `id_film`=:id_film AND `geo_coordinates`<>','", 
             array(
                 ':id_film' => $id 
                 ));
@@ -24,7 +24,7 @@ class lieu{
         return $data;
     }
     function getByRealisateurId($id){
-    	$data = $this->sql->fetchAll("SELECT * FROM `ltp_lieu` WHERE `id_realisateur`=:id_realisateur", 
+    	$data = $this->sql->fetchAll("SELECT * FROM `ltp_lieu` WHERE `id_realisateur`=:id_realisateur AND `geo_coordinates`<>','", 
             array(
                 ':id_realisateur' => $id
                  ));
@@ -32,7 +32,7 @@ class lieu{
         return $data;
     }
     function getByFilmId($id){
-    	$data = $this->sql->fetchAll("SELECT * FROM `ltp_lieu` WHERE `id_film`=:id_film", 
+    	$data = $this->sql->fetchAll("SELECT * FROM `ltp_lieu` WHERE `id_film`=:id_film AND `geo_coordinates`<>','", 
             array(
                 ':id_film' => $id 
                 ));
@@ -40,7 +40,7 @@ class lieu{
         return $data;
     }
     function findLieu($nb=null, $orderBy=null){
-        $rqt = "SELECT * FROM `ltp_lieu` ";
+        $rqt = "SELECT * FROM `ltp_lieu` WHERE `geo_coordinates`<>',' ";
     	if ($orderBy!=null){
             $rqt .= " ORDER BY `date_debut_evenement` ".$orderBy." ";
         }

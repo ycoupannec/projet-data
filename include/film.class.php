@@ -17,12 +17,13 @@ class film {
          $data['lieux'] = $this->getLieux($id);
          $realisateur = $this->getRealisateur($id);
          $data['realisateur'] = $realisateur["realisateur"];
-         $data['arrondissement'] = $this->getArrondissement($id);
-         $date['commentaires'] = $this->getCommentaireByFilm($id);
+         $data['arrondissements'] = $this->getArrondissement($id);
+         $data['commentaires'] = $this->getCommentaireByFilm($id);
          if (!empty($data['titre'])){
             $data['poster'] = $this->getPoster($data['titre']);   
             $data['overview'] = $this->getOverview($data['titre']);
          }
+
          
         return $data;
     }
@@ -55,6 +56,15 @@ class film {
         return $commentaire;
     }
 
+    function getUrl($data){
+        for ($i = 0; $i < count($data); $i++) { 
+         # code...
+        // à ajouter à la class film : get url
+            $data[$i]['URL'] = URL_SITE.'index.php?action=viewByFilmId&id='.$data[$i]['id'];
+        }
+        return $data;
+    }
+
     // compter le nb de lieux pour un film
     // @param $id integer Code du film
     function countLieux($id) {
@@ -71,6 +81,7 @@ class film {
 
     function allFilm(){
     	$data = $this->sql->fetchAll("SELECT * FROM `ltp_film` ");
+        $data = $this->getUrl($data);
 		return $data;
     }
 

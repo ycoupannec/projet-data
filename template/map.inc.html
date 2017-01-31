@@ -59,7 +59,7 @@
 			</div>
 		  </div>
 		</div>
-
+	<input id='i' value='0' style="display:none">
 
 	</aside>
 
@@ -70,13 +70,15 @@
 	<footer id="zoneRecherche" class="container">
 
 		<div id="btnHome" class="col-xs-3">
-			<img src="assets/img/minilogo.svg"/>
+			<a href="{{{URL_HOME}}}">
+				<img src="assets/img/minilogo.svg"/>
+			</a>
 		</div>
 
 
 		<div class="col-xs-9">
-
-			<select class="selectpicker show-menu-arrow" data-live-search="true" data-size="5">
+			<div id="by">{{{BY}}}</div>
+			<select id="selectFilm" onchange="this.form.submit()" class="selectpicker show-menu-arrow" data-live-search="true" data-size="5">
 				{{#Film}}
 				<option value="{{id}}" {{#active}}selected{{/active}}>{{titre}}</option>
 				{{/Film}}
@@ -89,33 +91,39 @@
 
 	<script>
 
+
 		/*FONCTIONS DES BOUTONS DE LA PAGE*/
 
 		$(".selectpicker").change(function(){
-		window.location = "{{URL}}index.php?action=viewByFilmId&id="+$(this).val();
+		window.location = "{{{URL}}}index.php?action=viewByFilmId&id="+$(this).val();
 		});
-
-
-		$("#btnHome").click(function(){
-		window.location = "{{URL}}index.php";
-		});
-
 
 		var idFilm = parseInt($(".selectpicker").val());
 
-		$("#btnPrecedent").click(function(){
-		window.location = "{{URL}}index.php?action=viewByFilmId&id="+(idFilm-1);
-		});
-
-		$("#btnSuivant").click(function(){
-		window.location = "{{URL}}index.php?action=viewByFilmId&id="+(idFilm+1);
+		$(".selectpicker").change(function(){
+			window.location = "{{{URL}}}"+$(this).val();
 		});
 
 
 
-	$(".selectpicker").change(function(){
-		window.location = "{{{URL}}}"+$(this).val();
-	});
+
+		$('#btnPrecedent').click(function() {
+			$('#selectFilm option:selected').prev().attr('selected', 'selected');
+			var pagePrecedente = $('#selectFilm').val();
+			window.location = "{{{URL}}}"+pagePrecedente;
+		});
+
+		$('#btnSuivant').click(function() {
+			$('#selectFilm option:selected').next().attr('selected', 'selected');
+			var pageSuivante = $('#selectFilm').val();
+			window.location = "{{{URL}}}"+pageSuivante;
+		});
+
+
+
+
+
+
 </script>
 
 
