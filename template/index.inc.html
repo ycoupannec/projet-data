@@ -19,7 +19,7 @@
 						<select class="selectpicker show-menu-arrow" data-dropup-auto="false" data-live-search="true" data-size="5" id="Film">
 								<option data-icon="glyphicon-film" value="" disabled selected hidden>par film</option>
 							{{#Film}}
-								<option data-icon="glyphicon-film" value="{{id}}" {{#active}}selected{{/active}}>{{titre}}</option>
+								<option value="{{id}}" {{#active}}selected{{/active}}>{{titre}}</option>
 							{{/Film}}
 						</select>
 
@@ -27,7 +27,7 @@
 						<select class="selectpicker show-menu-arrow" data-dropup-auto="false" data-live-search="true" data-size="5" id="FilmRealisateur">
 								<option data-icon="glyphicon-user" value="" disabled selected hidden>par réalisateur</option>
 							{{#FilmRealisateur}}
-								<option data-icon="glyphicon-user" value="{{id}}" {{#active}}selected{{/active}}>{{realisateur}}</option>
+								<option value="{{id}}" {{#active}}selected{{/active}}>{{realisateur}}</option>
 							{{/FilmRealisateur}}
 						</select>
 
@@ -35,7 +35,7 @@
 						<select class="selectpicker show-menu-arrow" data-dropup-auto="false" data-live-search="true" data-size="5" id="FilmArrondissement">
 								<option data-icon="glyphicon-map-marker" value="" disabled selected hidden>par arrondissement</option>
 							{{#FilmArrondissement}}
-								<option data-icon="glyphicon-map-marker" value="{{id}}" {{#active}}selected{{/active}}>{{arrondissement}}</option>
+								<option value="{{id}}" {{#active}}selected{{/active}}>{{arrondissement}}</option>
 							{{/FilmArrondissement}}
 						</select>
 
