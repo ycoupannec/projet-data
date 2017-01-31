@@ -80,6 +80,7 @@ if (!request('action')){
     echo $m->render('map.inc', 
         array(
             'Film' => $listFilm,
+            'BY' => 'Film',
             'URL' => URL_SITE."index.php?action=viewByFilmId&id=",
             'URL_HOME' => URL_SITE
             ));
@@ -134,6 +135,7 @@ if (!request('action')){
     echo $m->render('map.inc', 
         array(
             'Film' => $listFilm,
+            'BY' => 'Arrondissement',
             'URL' => URL_SITE."index.php?action=viewByArrondissementId&idArrondissement=".$idArrondissement."&idFilm=",
             'URL_HOME' => URL_SITE
             ));
@@ -186,6 +188,7 @@ if (!request('action')){
     echo $m->render('map.inc', 
         array(
             'Film' => $listFilm,
+            'BY' => 'Réalisateur',
             'URL' => URL_SITE."index.php?action=viewByRealisateurId&idRealisateur=".$idRealisateur."&idFilm=",
             'URL_HOME' => URL_SITE
             ));
