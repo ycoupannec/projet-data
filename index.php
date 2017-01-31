@@ -47,6 +47,7 @@ if (!request('action')){
             'FilmArrondissement' => $allArrondissement,
             'FilmRealisateur' => $allRealisateur 
             ));
+    echo $m->render('footer.inc');
 
 }else if(request('action') == "viewByFilmId"){
 
@@ -86,6 +87,7 @@ if (!request('action')){
             ));
 
     echo $m->render('mapleaflet',$allFilm);
+
 
 }else if(request('action')=='viewByArrondissementId'){
 
@@ -195,4 +197,3 @@ if (!request('action')){
 
 }
 
-echo $m->render('footer.inc');
