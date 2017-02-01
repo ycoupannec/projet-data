@@ -54,7 +54,7 @@ class film {
     function getCommentaireByFilm($id){
         $commentaires = new commentaire();
         $lieux=$this->getLieux($id);
-
+        $commentaire="";
         foreach ($lieux as $key => $lieu) {
             $commentaire[] = $commentaires->getCommentaireByLieu($lieu['id'],'desc');
         }
@@ -176,10 +176,19 @@ class movieAPI
 
     }
 
-    function getPoster(){
+    function getPoster($i = 3){
+        
+        $size[0] = 'w92';
+        $size[1] = 'w154';
+        $size[2] = 'w185';
+        $size[3] = 'w342';
+        $size[4] = 'w500';
+        $size[5] = 'w780';
+        $size[6] = 'original';
+        
         $picture = "";
         if(!empty($this->movie)){
-            $picture = "http://image.tmdb.org/t/p/original/". $this->movie->getPoster();
+            $picture = "http://image.tmdb.org/t/p/".$size[$i]."//". $this->movie->getPoster();
         }
         return $picture;
     }

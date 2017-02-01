@@ -13,6 +13,9 @@ function allInfo(){
 	$tab = $sql->fetchAll("SELECT * FROM `TABLE 34`");
 	foreach ($tab as $key => $value) {
 		# code...
+		$id_realisateur = 0;
+		$id_arrondissement = 0;
+		$id_titre_film = 0;
 
 		 $id_realisateur = verifInfo("SELECT * FROM `ltp_realisateur` WHERE `realisateur`=:info",$value["realisateur"]);
 		 /*echo "id_realisateur => ".strval($id_realisateur);*/
@@ -21,7 +24,7 @@ function allInfo(){
 		if ($id_realisateur==null){
 			$id_realisateur = addInfo("INSERT INTO `ltp_realisateur` (realisateur) VALUES ( :info );", array(':info' => $value["realisateur"]));
 		}else{
-			majInfo("UPDATE `TABLE 34` SET `id_realisateur` = :id_realisateur WHERE `TABLE 34`.`id` = :id",array(':id' => $value["id"], ":id_realisateur"=>$id_realisateur['id']));
+			//majInfo("UPDATE `TABLE 34` SET `id_realisateur` = :id_realisateur WHERE `TABLE 34`.`id` = :id",array(':id' => $value["id"], ":id_realisateur"=>$id_realisateur['id']));
 		}
 
 
@@ -34,7 +37,7 @@ function allInfo(){
 		if ($id_arrondissement==null){
 			$id_arrondissement = addInfo("INSERT INTO `ltp_arrondissement` (arrondissement) VALUES ( :info );",array(':info' => $value["arrondissement"]));
 		}else{
-			majInfo("UPDATE `TABLE 34` SET `id_arrondissement` = :id_arrondissement WHERE `TABLE 34`.`id` = :id",array(':id' => $value["id"], ":id_arrondissement"=>$id_arrondissement['id']));
+			//majInfo("UPDATE `TABLE 34` SET `id_arrondissement` = :id_arrondissement WHERE `TABLE 34`.`id` = :id",array(':id' => $value["id"], ":id_arrondissement"=>$id_arrondissement['id']));
 		}
 
 		/*titre*/
@@ -45,10 +48,13 @@ function allInfo(){
 		if ($id_titre_film==null){
 			$id_titre_film = addInfo("INSERT INTO `ltp_film` (titre) VALUES ( :info );",array(':info' => $value["titre"]));
 		}else{
-			majInfo("UPDATE `TABLE 34` SET `id_titre_film` = :id_titre_film WHERE `TABLE 34`.`id` = :id",array(':id' => $value["id"], ":id_titre_film"=>$id_titre_film['id']));
+			//majInfo("UPDATE `TABLE 34` SET `id_titre_film` = :id_titre_film WHERE `TABLE 34`.`id` = :id",array(':id' => $value["id"], ":id_titre_film"=>$id_titre_film['id']));
+		}
+		if ($id_titre_film['id']==2){
+			print_r($id_titre_film);
 		}
 		
-		/*echo "</br>";
+		echo "</br>";
 		$date_fin_evenement = $value["date_fin_evenement"];
 		$date_fin_evenement = date("Y-m-d", strtotime($date_fin_evenement));
 		$date_debut_evenement = $value["date_debut_evenement"];
@@ -90,7 +96,7 @@ function allInfo(){
 			":id_film"=>$id_titre_film['id'] ),"insert"));
 
 
-		*/
+		
 
 
 	}
@@ -108,9 +114,14 @@ function majInfo($requette,$id){
 	return $id;
 }
 
-function returnDataGeo(){
+function returnDataGeo($limit=0){
 	$sql = new SQLpdo();
-	$tabData = $sql->fetchAll("SELECT * FROM `ltp_lieu` WHERE `geo_coordinates`=',' " );
+	$rqt ="SELECT * FROM `ltp_lieu` WHERE `geo_coordinates`=',' ";
+	if ($limit!=0){
+		$rqt .= " LIMIT ".$limit." ";
+	}
+
+	$tabData = $sql->fetchAll($rqt);
 	return $tabData;
 
 }
@@ -146,23 +157,31 @@ function get_coords($address){
 }
 
 function majCoordonne(){
-	$donne = returnDataGeo();
-
-    for ($i=0; $i <count($donne) ; $i++) { 
-        # code...
+	$donnes = returnDataGeo();
+	// print_r($donne);
+	// exit;
+	foreach ($donnes as $key => $donne) {
 
         /*print_r($adresse);*/
-        if ($donne[$i]['id']!=1602 and $donne[$i]['id']!=7393 and $donne[$i]['id']!=7481 and $donne[$i]['id']!=7836 and $donne[$i]['id']!=7932){
-	        $champ = $donne[$i]['adresse'];
-	        print_r($donne[$i]['id']);
+        if ($donne['id']!=1602 and $donne['id']!=7393 and $donne['id']!=7481 and $donne['id']!=7836 and $donne['id']!=7932){
+	        $champ = $donne['adresse_complete'];
+	        print_r($donne['id']);
 	        echo "</br>";
-	        print_r(after (' ',$champ));
+	        // print_r(after (' ',$champ));
         	echo "</br>";
-	        $info = get_coords(after (' ',$champ));
-	        print_r($info['lon']);
+	        // $info = get_coords(after (' ',$champ));
+	        $info = get_coords($champ);
+	        print_r($info);
 	        echo "</br>";
+	        echo $champ;
 	        $adresse = $info['lat'].", ".$info['lon'];
-	        addCoordonne($donne[$i]['id'],$adresse);
+	        echo $adresse;
+	        if ($adresse!=', '){
+	        	addCoordonne($donne['id'],$adresse);
+	        }else{
+	        	print_r($donne);
+	        }
+	        
         }
         
     }

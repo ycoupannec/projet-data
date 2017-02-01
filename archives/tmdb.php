@@ -8,7 +8,7 @@ require_once "include/realisateur.class.php";
 require_once "include/lieu.class.php";
 require_once "include/arrondissement.class.php";
 require_once "include/SQL.class.php";
-require_once "include/tmdb_v3-PHP-API--master/tmdb-api.php";
+require_once "include/tmdbApi/tmdb-api.php";
 
 
 $movie=new movieAPI("BUS PALLADIUM");
