@@ -115,6 +115,26 @@
 	else
 	{
 		document.getElementById("imgBtnFicheFilm").src= "assets/img/boutonnofiche.svg";
+
+		document.getElementById("btnFicheFilm").onclick = function()
+		{
+			document.getElementById("titreFilm").innerHTML = infoFilm[0].titre;
+
+			document.getElementById("realisateurFilm").innerHTML = "Réalisateur: "+infoFilm[0].realisateur;
+
+			document.getElementById("adresseFilm").classList.add("infoHide");
+
+			document.getElementById("dateFilm").classList.add("infoHide");
+
+			document.getElementById("cadreFilm").classList.add("infoHide");
+
+			document.getElementById("overviewFilm").classList.remove("infoHide");
+			document.getElementById("overviewFilm").innerHTML = "Synopsis: Désolé, nous n'avons aucune information sur ce film";
+
+			document.getElementById("posterFilm").classList.add("infoHide");
+
+			document.getElementById("boutonModal").click();
+		}
 	}
 
 
