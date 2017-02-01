@@ -46,10 +46,7 @@ Network Trash Folder
 Temporary Items
 .apdisk
 include/.init.php
-<<<<<<< HEAD
 /include/.init.php
 .init.php
-=======
-.init.php
 ftpsync.settings
->>>>>>> Ben_MaJ
+.ftpconfig

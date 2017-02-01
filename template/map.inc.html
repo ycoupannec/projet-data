@@ -27,12 +27,12 @@
 
 
 
-	<!--ZONE MODAL-->
+	<!--ZONE MODAL (CACHEE)-->
 	<aside>
 
 
 		<!-- BOUTON MODAL -->
-		<button id="mzzrFckngBtn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalMarker">
+		<button id="boutonModal" type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalMarker">
 		  Launch demo modal
 		</button>
 
@@ -67,16 +67,16 @@
 
 
 	<!--ZONE DE RECHERCHE DU FILM-->
-	<footer id="zoneRecherche" class="container">
+	<footer id="zoneRecherche">
 
-		<div id="btnHome" class="col-xs-3">
+		<div id="btnHome">
 			<a href="{{{URL_HOME}}}">
 				<img src="assets/img/minilogo.svg"/>
 			</a>
 		</div>
 
 
-		<div class="col-xs-9">
+		<div>
 
 			<div id="by">{{{BY}}}</div>
 			<select id="selectFilm" onchange="this.form.submit()" class="selectpicker show-menu-arrow" data-dropup-auto="true" data-live-search="true" data-size="5">
@@ -91,8 +91,9 @@
 	</footer>
 
 
-	<script>
 
+
+	<script>
 
 		/*FONCTIONS DES BOUTONS DE LA PAGE*/
 
@@ -107,8 +108,6 @@
 		});
 
 
-
-
 		$('#btnPrecedent').click(function() {
 			$('#selectFilm option:selected').prev().attr('selected', 'selected');
 			var pagePrecedente = $('#selectFilm').val();
@@ -121,12 +120,7 @@
 			window.location = "{{{URL}}}"+pageSuivante;
 		});
 
-
-
-
-
-
-</script>
+	</script>
 
 
 </body>
