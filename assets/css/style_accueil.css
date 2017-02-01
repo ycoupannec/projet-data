@@ -34,8 +34,13 @@ background-size: 10%;
 background-repeat: repeat-y;
 background-position: right;
 height: 100%;
+display: -webkit-box;
+display: -ms-flexbox;
 display: flex;
+-ms-flex-flow: column;
 flex-flow: column;
+-webkit-box-pack: justify;
+-ms-flex-pack: justify;
 justify-content: space-between;
 }
 
@@ -49,12 +54,19 @@ p{
 }
 
 main{
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
 	justify-content: center;
 }
 
 #searchBox{
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
+	-ms-flex-flow: column;
 	flex-flow: column;
 }
 
@@ -100,8 +112,13 @@ li span{
 }
 
 footer{
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
+	-ms-flex-flow: column;
 	flex-flow: column;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
 	align-items: center;
 	width: 100vw;
 }

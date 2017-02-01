@@ -8,7 +8,10 @@ html, body{
 body {
     padding: 0;
     margin: 0;
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
+	-ms-flex-flow: column;
 	flex-flow: column;
 	background-color: #505F7E;
 }
@@ -18,7 +21,11 @@ main{
 	padding: 0;
 	margin: 0;
 	z-index: 0;
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
+	-webkit-box-align: end;
+	-ms-flex-align: end;
 	align-items: flex-end;
 	height: 85%;
 }
@@ -28,8 +35,14 @@ footer{
 	padding: 0;
 	margin: 0;
 	z-index:1;
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
 	align-items: center;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
 	justify-content: center;
 	height: 15%;
 	box-shadow: 0px -2px 15px 0px rgba(0,0,0,0.36);
@@ -49,7 +62,11 @@ footer div{
 
 #zoneBtnSuivantPrecedent{
 	width: 100vw;
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
+	-webkit-box-pack: justify;
+	-ms-flex-pack: justify;
 	justify-content: space-between;
 	margin: 1.5em;
 }
@@ -58,8 +75,13 @@ footer div{
 #btnPrecedent, #btnSuivant, #btnFicheFilm{
 	z-index: 1000;
 	position: relative;
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
+	-ms-flex-flow: column;
 	flex-flow: column;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
 	justify-content: center;
 	color: #505F7E;
 }
@@ -72,7 +94,6 @@ footer div{
 
 
 #btnPrecedent img{
-    -ms-transform: rotate(180deg);
     -webkit-transform: rotate(180deg);
     transform: rotate(180deg);
 }
