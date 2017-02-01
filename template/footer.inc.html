@@ -1,4 +1,4 @@
-<footer>
+		<footer>
 
     <div class="flex-container" id="link">
         <a href="https://twitter.com/AccessCodeOFP"><img src="assets/img/logo_twit.png" alt="twitter"></a>
@@ -14,8 +14,21 @@
 
 
 </footer>
+	</div>
 </div>
-</div>
+
+	<script>
+		$("#Film").change(function() {
+			window.location = "{{URL}}index.php?action=viewByFilmId&id=" + $(this).val();
+		});
+		$("#FilmRealisateur").change(function() {
+			window.location = "{{URL}}index.php?action=viewByRealisateurId&idRealisateur=" + $(this).val();
+		});
+		$("#FilmArrondissement").change(function() {
+			window.location = "{{URL}}index.php?action=viewByArrondissementId&idArrondissement=" + $(this).val();
+		});
+	</script>
+
 </body>
 
 </html>

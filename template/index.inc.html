@@ -4,8 +4,6 @@
 
 
 
-
-
 			<header>
 
 				<h1 class="text-center "><img src="assets/img/title.png " alt="La traversée de Paris "></h1>
@@ -14,8 +12,7 @@
 
 
 
-
-			<div class="container">
+			<main class="container">
 				<div class="row ">
 					<div id="searchBox" class="col-xs-12">
 						<p>Sélectionnez votre parcours :</p>
@@ -44,19 +41,5 @@
 
 					</div>
 				</div>
-			</div>
+			</main>
 
-
-
-
-			<script>
-				$("#Film").change(function() {
-					window.location = "{{URL}}index.php?action=viewByFilmId&id=" + $(this).val();
-				});
-				$("#FilmRealisateur").change(function() {
-					window.location = "{{URL}}index.php?action=viewByRealisateurId&idRealisateur=" + $(this).val();
-				});
-				$("#FilmArrondissement").change(function() {
-					window.location = "{{URL}}index.php?action=viewByArrondissementId&idArrondissement=" + $(this).val();
-				});
-			</script>
