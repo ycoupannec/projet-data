@@ -50,3 +50,4 @@ include/.init.php
 .init.php
 ftpsync.settings
 .ftpconfig
+/template/changeColorArrondissement.html
