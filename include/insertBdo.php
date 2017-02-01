@@ -163,26 +163,26 @@ function majCoordonne(){
 	foreach ($donnes as $key => $donne) {
 
         /*print_r($adresse);*/
-        if ($donne['id']!=1602 and $donne['id']!=7393 and $donne['id']!=7481 and $donne['id']!=7836 and $donne['id']!=7932){
-	        $champ = $donne['adresse_complete'];
-	        print_r($donne['id']);
-	        echo "</br>";
-	        // print_r(after (' ',$champ));
-        	echo "</br>";
-	        // $info = get_coords(after (' ',$champ));
-	        $info = get_coords($champ);
-	        print_r($info);
-	        echo "</br>";
-	        echo $champ;
-	        $adresse = $info['lat'].", ".$info['lon'];
-	        echo $adresse;
-	        if ($adresse!=', '){
-	        	addCoordonne($donne['id'],$adresse);
-	        }else{
-	        	print_r($donne);
-	        }
-	        
+    
+        $champ = $donne['adresse_complete'];
+        print_r($donne['id']);
+        echo "</br>";
+        // print_r(after (' ',$champ));
+    	echo "</br>";
+        // $info = get_coords(after (' ',$champ));
+        $info = get_coords($champ);
+        print_r($info);
+        echo "</br>";
+        echo $champ;
+        $adresse = $info['lat'].", ".$info['lon'];
+        echo $adresse;
+        if ($adresse!=', ' || $info['lat']="" || $info['lon']){
+        	addCoordonne($donne['id'],$adresse);
+        }else{
+        	print_r($donne);
         }
+        
+        
         
     }
 }
